@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual Environment
+parksight_env/
+
+# Node
+node_modules/
+dist/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+data/processed/jan to may police violation_anonymized791b166.csv
+data/processed/cleaned_violations_full.csv

@@ -1,0 +1,74 @@
+Phase 2 Summary (Post-Correction)
+==================================
+Corrections applied: F1 F2 F3 F4 F5 F6
+Hotspot summary input: C:\Users\hp\Downloads\prototype\prototype\data\processed\hotspot_summary.csv
+Cleaned full dataset input: C:\Users\hp\Downloads\prototype\prototype\data\processed\cleaned_violations_full.csv
+
+PCIS Scoring Engine
+-------------------
+Hotspots scored: 701
+Score range: min=18.29  max=92.54  mean=52.79
+P25=43.71  P50=52.25  P75=62.24
+Band breakdown (percentile-based):
+  Critical (top 15%):     107
+  High    (50th-85th%):   245
+  Medium  (20th-50th%):   211
+  Low     (bottom 20%):   138
+
+Top 10 hotspots by PCIS score:
+  1. Unknown Hotspot U-0296 | Byatarayanapura | PCIS=92.54 | Band=Critical
+  2. Unknown Hotspot U-0021 | Chikkajala | PCIS=88.38 | Band=Critical
+  3. Unknown Hotspot U-0064 | Mahadevapura | PCIS=87.77 | Band=Critical
+  4. Unknown Hotspot U-0020 | Mahadevapura | PCIS=86.35 | Band=Critical
+  5. Unknown Hotspot U-0005 | K.R. Pura | PCIS=85.88 | Band=Critical
+  6. Unknown Hotspot U-0066 | Chikkajala | PCIS=85.58 | Band=Critical
+  7. Unknown Hotspot U-0138 | Chikkajala | PCIS=84.43 | Band=Critical
+  8. Unknown Hotspot U-0149 | Whitefield | PCIS=84.36 | Band=Critical
+  9. BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road | Rajajinagar | PCIS=83.94 | Band=Critical
+  10. Unknown Hotspot U-0018 | Hulimavu | PCIS=83.72 | Band=Critical
+
+Repeat Offender Intelligence
+----------------------------
+Threshold: >= 8 violations AND >= 2 distinct hotspots
+Filter: REJECTED and DUPLICATE violations excluded (F6)
+Repeat offenders identified: 287
+Violations per offender: min=8 P50=10 max=34
+Top 10 repeat offenders by offender_score (normalised 0-100):
+  1. FKN00GL9771 | violations=34 | hotspots=2 | score=100.0 (raw=53.8887)
+  2. FKN00GL17863 | violations=33 | hotspots=2 | score=96.15 (raw=52.3038)
+  3. FKN00GL2906 | violations=26 | hotspots=3 | score=95.42 (raw=52.0)
+  4. FKN00GL9182 | violations=20 | hotspots=4 | score=81.92 (raw=46.4386)
+  5. FKN00GL15265 | violations=28 | hotspots=2 | score=76.92 (raw=44.379)
+  6. FKN00GL7916 | violations=20 | hotspots=3 | score=66.3 (raw=40.0)
+  7. FKN00GL104980 | violations=20 | hotspots=3 | score=66.3 (raw=40.0)
+  8. FKN00GL1118 | violations=25 | hotspots=2 | score=65.38 (raw=39.6241)
+  9. FKN00GL1243 | violations=19 | hotspots=3 | score=61.44 (raw=38.0)
+  10. FKN00GL16746 | violations=16 | hotspots=4 | score=59.38 (raw=37.1508)
+
+Emerging Hotspot Detection
+--------------------------
+WARNING: 398 DBSCAN unknown hotspots excluded (cluster label not in cleaned records).
+Named hotspots analysed: 302
+Min weekly recent mean gate: 5.0 violations/week
+Emerging:          25
+Low Activity:      14  (drift triggered but below activity gate)
+Stable:            229
+Cooling:           7
+Insufficient Data: 27
+Top emerging hotspots by drift_score (normalised 0-100):
+  1. BTP080 - NR Road, SP Road Junction | City Market | drift=100.0 (raw=12.5854) | recent_mean=43.5
+  2. BTP186 - 9th Cross, 4th Main, Jayanagar | Wilson Garden | drift=100.0 (raw=10.6187) | recent_mean=85.25
+  3. BTP163 - 16th Main Road, BTM Layout | Mico Layout | drift=95.1 (raw=9.0206) | recent_mean=17.25
+  4. BTP024 - NPS, Vijayanagar | Magadi Road | drift=85.15 (raw=7.0294) | recent_mean=78.5
+  5. BTP030 - Mekhri Circle | Sadashivanagar | drift=84.89 (raw=6.9783) | recent_mean=10.25
+  6. BTP009 - Prakash Nagar Junction | Rajajinagar | drift=76.25 (raw=5.25) | recent_mean=5.25
+  7. BTP215 - Vanivillas Junction | Basavanagudi | drift=76.18 (raw=5.2356) | recent_mean=26.5
+  8. BTP186 - 9th Cross, 4th Main, Jayanagar | Basavanagudi | drift=70.94 (raw=4.1872) | recent_mean=10.5
+  9. BTP063 - Siddalingaiah Circle | Halasuru Gate | drift=69.48 (raw=3.8951) | recent_mean=9.75
+  10. BTP026 - 1st Block Junction, Rajajinagar | Malleshwaram | drift=68.74 (raw=3.748) | recent_mean=39.75
+
+Outputs
+-------
+PCIS scores:        C:\Users\hp\Downloads\prototype\prototype\data\processed\pcis_scores.csv
+Repeat offenders:   C:\Users\hp\Downloads\prototype\prototype\data\processed\repeat_offenders.csv
+Emerging hotspots:  C:\Users\hp\Downloads\prototype\prototype\data\processed\emerging_hotspots.csv

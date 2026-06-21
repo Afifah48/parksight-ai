@@ -1,0 +1,25 @@
+Phase 1 Summary
+===============
+Input CSV: data\processed\jan to may police violation_anonymized791b166.csv
+Raw records scanned: 298450
+Clean records retained: 298450
+Records dropped: 0
+Named junction records: 150565
+No Junction records: 147885
+Named hotspots generated: 303
+Unknown DBSCAN hotspots generated: 398
+DBSCAN eps meters: 75.0
+DBSCAN min samples: 20
+Full cleaned dataset: C:\Users\hp\Downloads\prototype\prototype\data\processed\cleaned_violations_full.csv
+
+Top 10 hotspots by severity:
+1. Unknown Hotspot U-0005 | K.R. Pura | severity=63.76 | violations=4192
+2. Unknown Hotspot U-0021 | Chikkajala | severity=63.21 | violations=4767
+3. BTP058 - Subbanna Junction | Upparpet | severity=62.31 | violations=4830
+4. BTP083 - AS Char Street, Mysore Road | City Market | severity=61.22 | violations=1183
+5. Unknown Hotspot U-0018 | Hulimavu | severity=61.2 | violations=1687
+6. Unknown Hotspot U-0019 | Bellandur | severity=60.63 | violations=2018
+7. BTP082 - KR Market Junction | City Market | severity=60.48 | violations=10109
+8. Unknown Hotspot U-0064 | Mahadevapura | severity=60.32 | violations=2027
+9. Unknown Hotspot U-0086 | Yelahanka | severity=60.1 | violations=836
+10. Unknown Hotspot U-0020 | Mahadevapura | severity=59.91 | violations=2090

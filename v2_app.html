@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ParkSight AI — Command Center</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6.3.0/umd/react-router-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        bg: { DEFAULT: "#0a0e1a", secondary: "#0f172a", tertiary: "#111827" },
+                        srf: { DEFAULT: "#1e293b", low: "#131a2b", high: "#263044", glass: "rgba(15,23,42,0.75)", hover: "#334155" },
+                        brd: { DEFAULT: "#1e293b", subtle: "#1a2332", hover: "#475569", active: "#22d3ee" },
+                        txt: { DEFAULT: "#e2e8f0", secondary: "#94a3b8", muted: "#64748b", bright: "#f8fafc" },
+                        accent: { cyan: "#22d3ee", blue: "#3b82f6", indigo: "#6366f1", purple: "#a855f7" },
+                        status: { critical: "#ef4444", high: "#f97316", elevated: "#f59e0b", medium: "#eab308", low: "#22c55e" },
+                        "critical-bg": "rgba(239,68,68,0.12)", "high-bg": "rgba(249,115,22,0.12)",
+                        "medium-bg": "rgba(234,179,8,0.12)", "low-bg": "rgba(34,197,94,0.12)",
+                    },
+                    fontFamily: { sans: ["Inter","sans-serif"], mono: ["JetBrains Mono","monospace"] },
+                    spacing: { sidebar: "250px" },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: linear-gradient(145deg,#0a0e1a 0%,#0f172a 50%,#111827 100%); color:#e2e8f0; font-family:'Inter',sans-serif; overflow:hidden; }
+        ::-webkit-scrollbar { width:5px; height:5px; }
+        ::-webkit-scrollbar-track { background:#0a0e1a; }
+        ::-webkit-scrollbar-thumb { background:#1e293b; border-radius:3px; }
+        ::-webkit-scrollbar-thumb:hover { background:#22d3ee; }
+        @keyframes pulse-glow { 0%,100%{opacity:1;box-shadow:0 0 4px currentColor} 50%{opacity:.5;box-shadow:0 0 8px currentColor} }
+        @keyframes ticker { 0%{transform:translateX(100%)} 100%{transform:translateX(-200%)} }
+        @keyframes fadein { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+        .anim-fadein { animation: fadein .4s ease-out both; }
+        .glass { background:rgba(15,23,42,0.7); backdrop-filter:blur(12px); border:1px solid #1e293b; }
+        .card { background:rgba(15,23,42,0.75); border:1px solid #1e293b; border-radius:10px; transition:border-color .2s; }
+        .card:hover { border-color:#334155; }
+        .leaflet-container { background:#0a0e1a !important; }
+        .leaflet-control-zoom a { background:#1e293b !important; color:#94a3b8 !important; border-color:#334155 !important; }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useRef,useMemo,useCallback} = React;
+const {createRoot} = ReactDOM;
+const {MemoryRouter,Routes,Route,Link,useLocation} = ReactRouterDOM;
+
+/* ═══════════════════════════════════════════════════════════════
+   DATA — Representative sample from Bengaluru violation dataset
+   ═══════════════════════════════════════════════════════════════ */
+const D = {
+  kpis: { totalViolations:298450, displayViolations:12450, hotspots:701, critical:42, emerging:12, repeatOffenders:287, routes:97, avgPCIS:52.79, readiness:92 },
+  hotspots: [
+    {id:"LOC-882A",name:"KR Puram Jct",station:"KR Pura Traffic PS",lat:13.0068,lng:77.6564,violations:4281,pcis:9.4,band:"Critical",drift:"Emerging",driftScore:94.2,volume:4210},
+    {id:"LOC-114B",name:"Silk Board",station:"HSR Traffic PS",lat:12.9170,lng:77.6230,violations:3105,pcis:8.1,band:"Critical",drift:"Emerging",driftScore:88.7,volume:6855},
+    {id:"LOC-339C",name:"Marathahalli Bridge",station:"Marathahalli Traffic PS",lat:12.9560,lng:77.7010,violations:2840,pcis:7.6,band:"High",drift:"Emerging",driftScore:72.1,volume:2890},
+    {id:"LOC-401D",name:"Hebbal Flyover",station:"Hebbal Traffic PS",lat:13.0358,lng:77.5970,violations:2450,pcis:7.2,band:"High",drift:"Stable",driftScore:65.4,volume:3100},
+    {id:"LOC-552E",name:"Koramangala 80ft Rd",station:"Koramangala Traffic PS",lat:12.9352,lng:77.6245,violations:898,pcis:3.2,band:"Medium",drift:"Cooling",driftScore:41.0,volume:1280},
+    {id:"LOC-201F",name:"MG Road / Brigade Rd",station:"Cubbon Park Traffic PS",lat:12.9756,lng:77.6044,violations:1950,pcis:6.8,band:"High",drift:"Emerging",driftScore:82.3,volume:2410},
+    {id:"LOC-773G",name:"Majestic Bus Stand",station:"Majestic Traffic PS",lat:12.9767,lng:77.5713,violations:1820,pcis:6.1,band:"High",drift:"Stable",driftScore:55.0,volume:1980},
+    {id:"LOC-608H",name:"Indiranagar 100ft Rd",station:"Indiranagar Traffic PS",lat:12.9784,lng:77.6408,violations:1540,pcis:5.4,band:"Medium",drift:"Emerging",driftScore:68.2,volume:1620},
+    {id:"LOC-915I",name:"Whitefield Main Rd",station:"Whitefield Traffic PS",lat:12.9698,lng:77.7500,violations:1320,pcis:4.9,band:"Medium",drift:"Stable",driftScore:38.7,volume:1100},
+    {id:"LOC-044J",name:"Electronic City Ph1",station:"Electronic City Traffic PS",lat:12.8456,lng:77.6603,violations:980,pcis:4.1,band:"Low",drift:"Cooling",driftScore:22.5,volume:890},
+    {id:"LOC-287K",name:"Jayanagar 4th Block",station:"Jayanagar Traffic PS",lat:12.9250,lng:77.5830,violations:760,pcis:3.8,band:"Low",drift:"Stable",driftScore:30.2,volume:720},
+    {id:"LOC-129L",name:"Outer Ring Rd Bellandur",station:"Bellandur Traffic PS",lat:12.9260,lng:77.6760,violations:2100,pcis:6.5,band:"High",drift:"Emerging",driftScore:78.9,volume:3200},
+  ],
+  offenders: [
+    {plate:"KA-05-AB-7742",violations:14,trend:"up",type:"No-Parking Zone",score:98.2,location:"Indiranagar 100ft Rd",span:12,hotspots:4},
+    {plate:"KA-01-MJ-9011",violations:8,trend:"flat",type:"Wrong Parking",score:72.5,location:"MG Road",span:18,hotspots:3},
+    {plate:"KA-51-PQ-3320",violations:7,trend:"up",type:"No-Parking Zone",score:68.1,location:"Koramangala",span:9,hotspots:2},
+    {plate:"KA-03-XX-1189",violations:6,trend:"down",type:"Double Parking",score:55.3,location:"Jayanagar",span:22,hotspots:3},
+    {plate:"KA-09-CD-4455",violations:5,trend:"flat",type:"No-Parking Zone",score:48.0,location:"Whitefield",span:15,hotspots:2},
+  ],
+  stations: [
+    {name:"KR Pura Traffic PS",critical:5,high:8,total:28,violations:12400,emerging:3,maxPriority:94.2},
+    {name:"HSR Traffic PS",critical:4,high:6,total:22,violations:9800,emerging:2,maxPriority:88.7},
+    {name:"Marathahalli Traffic PS",critical:2,high:5,total:18,violations:7200,emerging:2,maxPriority:72.1},
+    {name:"Hebbal Traffic PS",critical:2,high:4,total:15,violations:6100,emerging:1,maxPriority:65.4},
+    {name:"Cubbon Park Traffic PS",critical:1,high:3,total:12,violations:4800,emerging:2,maxPriority:82.3},
+    {name:"Koramangala Traffic PS",critical:0,high:2,total:10,violations:3200,emerging:0,maxPriority:41.0},
+  ],
+  routes: [
+    {id:"RT-892-A",zone:"Sector 4 - CBD Perimeter",officer:"Off. K. Sharma",band:"High",eta:"4m",stops:8,distance:12.4},
+    {id:"RT-104-B",zone:"Tech Park Transit Corridor",officer:"Off. M. Reddy",band:"Normal",eta:"12m",stops:6,distance:8.7},
+    {id:"RT-556-C",zone:"Outer Ring Road South",officer:"Off. P. Singh",band:"High",eta:"7m",stops:10,distance:15.2},
+    {id:"RT-231-D",zone:"Residential North Sector",officer:"Off. R. Kumar",band:"Normal",eta:"15m",stops:5,distance:6.3},
+  ],
+  roiScenarios: [
+    {id:"S1",officers:2,hotspots:35,visits:40,intensity:0.5,pcisReduction:1.2,hotspotsImproved:8,offenderContacts:4},
+    {id:"S2",officers:5,hotspots:88,visits:100,intensity:0.7,pcisReduction:3.8,hotspotsImproved:22,offenderContacts:12},
+    {id:"S3",officers:8,hotspots:140,visits:160,intensity:0.8,pcisReduction:6.5,hotspotsImproved:38,offenderContacts:21},
+    {id:"S4",officers:10,hotspots:210,visits:200,intensity:0.8,pcisReduction:8.9,hotspotsImproved:52,offenderContacts:28},
+    {id:"S5",officers:15,hotspots:350,visits:300,intensity:1.0,pcisReduction:14.2,hotspotsImproved:89,offenderContacts:45},
+    {id:"S6",officers:20,hotspots:490,visits:400,intensity:1.0,pcisReduction:18.7,hotspotsImproved:124,offenderContacts:62},
+  ],
+  alerts: [
+    {type:"CRITICAL DENSITY",location:"MG Road / Brigade Rd Junction",text:"Velocity dropped 64% in last 10m.",time:"10:42 AM",severity:"critical"},
+    {type:"FORMING QUEUE",location:"Outer Ring Road (South)",text:"Abnormal volume spike detected.",time:"10:38 AM",severity:"high"},
+    {type:"SENSOR ANOMALY",location:"Koramangala 80ft Rd",text:"Camera feed obstructed.",time:"10:30 AM",severity:"elevated"},
+  ],
+  recommendations: [
+    {title:"Reroute Commercial Traffic",text:"Divert heavy vehicles from Hosur Rd to mitigate Silk Board congestion.",action:"Execute",priority:"critical"},
+    {title:"Deploy Quick Response Team",text:"Send closest patrol (Unit 4) to manually manage intersection at KR Puram.",action:"Dispatch",priority:"high"},
+    {title:"Increase Enforcement at MG Road",text:"High likelihood of illegal parking during peak hours. Deploy additional officers.",action:"Execute",priority:"high"},
+  ],
+};
+
+const BAND_COLORS = {Critical:"#ef4444",High:"#f97316",Medium:"#eab308",Low:"#22c55e"};
+const BAND_BG = {Critical:"rgba(239,68,68,0.12)",High:"rgba(249,115,22,0.12)",Medium:"rgba(234,179,8,0.12)",Low:"rgba(34,197,94,0.12)"};
+
+/* ═══════════════════════════════════════
+   UI PRIMITIVES
+   ═══════════════════════════════════════ */
+const Icon = ({name,size=20,className=""}) => <span className={`material-symbols-outlined ${className}`} style={{fontSize:size}}>{name}</span>;
+
+const Badge = ({band,small}) => {
+    const c = BAND_COLORS[band] || "#94a3b8";
+    const bg = BAND_BG[band] || "rgba(148,163,184,0.12)";
+    return <span className={`inline-block rounded-full font-semibold uppercase tracking-wide border ${small?"text-[9px] px-1.5 py-0":"text-[10px] px-2 py-0.5"}`} style={{color:c,background:bg,borderColor:c+"40"}}>{band}</span>;
+};
+
+const StatusDot = ({color="green",pulse}) => <span className={`inline-block w-2 h-2 rounded-full ${pulse?"animate-pulse":""}`} style={{background:color,boxShadow:`0 0 6px ${color}`}}/>;
+
+const ProgressBar = ({value=0,max=100,color="#22c55e",h=4}) => (
+    <div className="w-full rounded-full overflow-hidden" style={{height:h,background:"#1e293b"}}>
+        <div className="rounded-full transition-all duration-700" style={{width:`${(value/max)*100}%`,height:"100%",background:color}}/>
+    </div>
+);
+
+const TrendArrow = ({dir="up"}) => {
+    const cfg = {up:["↗","#ef4444"],down:["↘","#22c55e"],flat:["→","#64748b"]};
+    const [arrow,color] = cfg[dir]||cfg.flat;
+    return <span className="font-semibold text-xs" style={{color}}>{arrow}</span>;
+};
+
+const SectionHeader = ({icon,title,right,border=true}) => (
+    <div className={`flex items-center justify-between pb-2 mb-3 ${border?"border-b border-brd":""}`}>
+        <div className="flex items-center gap-2">
+            {icon && <Icon name={icon} size={16} className="text-txt-muted"/>}
+            <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-txt-secondary">{title}</span>
+        </div>
+        {right}
+    </div>
+);
+
+/* ═══════════════════════════════════════
+   SVG CHARTS
+   ═══════════════════════════════════════ */
+const MiniBarChart = ({data,height=120,barColor}) => {
+    const max = Math.max(...data.map(d=>d.value),1);
+    const w = 100/data.length;
+    return (
+        <svg viewBox={`0 0 100 ${height}`} className="w-full" preserveAspectRatio="none" style={{height}}>
+            {data.map((d,i) => {
+                const bh = (d.value/max)*(height-20);
+                const c = barColor || d.color || "#3b82f6";
+                return <g key={i}>
+                    <rect x={i*w+w*0.15} y={height-bh-2} width={w*0.7} height={bh} rx={2} fill={c} opacity={0.85}/>
+                    <text x={i*w+w/2} y={height-2} textAnchor="middle" fill="#64748b" fontSize={6} fontFamily="Inter">{d.label||""}</text>
+                </g>;
+            })}
+        </svg>
+    );
+};
+
+const DonutChart = ({segments,size=100,thickness=14}) => {
+    const total = segments.reduce((s,d)=>s+d.value,0)||1;
+    const r = (size-thickness)/2;
+    const c = 2*Math.PI*r;
+    let offset = 0;
+    return (
+        <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+            <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#1e293b" strokeWidth={thickness}/>
+            {segments.map((seg,i)=>{
+                const pct = seg.value/total;
+                const dash = pct*c;
+                const el = <circle key={i} cx={size/2} cy={size/2} r={r} fill="none" stroke={seg.color} strokeWidth={thickness}
+                    strokeDasharray={`${dash} ${c-dash}`} strokeDashoffset={-offset} transform={`rotate(-90 ${size/2} ${size/2})`}
+                    style={{transition:"stroke-dasharray .6s ease"}}/>;
+                offset += dash;
+                return el;
+            })}
+            <text x={size/2} y={size/2-4} textAnchor="middle" fill="#f8fafc" fontSize={16} fontWeight={700} fontFamily="Inter">{total}</text>
+            <text x={size/2} y={size/2+10} textAnchor="middle" fill="#64748b" fontSize={8} fontFamily="Inter">TOTAL</text>
+        </svg>
+    );
+};
+
+const SparkBars = ({values=[],color="#3b82f6",h=40,w=80}) => {
+    const max = Math.max(...values,1);
+    const bw = w/values.length;
+    return (
+        <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}>
+            {values.map((v,i)=><rect key={i} x={i*bw+1} y={h-(v/max)*h} width={bw-2} height={(v/max)*h} rx={1} fill={color} opacity={0.7+0.3*(v/max)}/>)}
+        </svg>
+    );
+};
+
+/* ═══════════════════════════════════════
+   LEAFLET MAP COMPONENT
+   ═══════════════════════════════════════ */
+const LeafletMap = ({markers=[],center=[12.9716,77.5946],zoom=12,height="100%",showHeat=true,routeCoords,className=""}) => {
+    const mapRef = useRef(null);
+    const mapInstanceRef = useRef(null);
+
+    useEffect(()=>{
+        if(mapInstanceRef.current) { mapInstanceRef.current.remove(); mapInstanceRef.current=null; }
+        if(!mapRef.current) return;
+        const map = L.map(mapRef.current,{zoomControl:true,attributionControl:false}).setView(center,zoom);
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{maxZoom:19}).addTo(map);
+        markers.forEach(m=>{
+            const c = BAND_COLORS[m.band]||"#3b82f6";
+            L.circleMarker([m.lat,m.lng],{radius:m.band==="Critical"?8:6,color:c,fillColor:c,fillOpacity:.7,weight:2})
+             .bindTooltip(`<b>${m.name}</b><br/>Band: ${m.band}<br/>Violations: ${(m.violations||0).toLocaleString()}`,{className:"!bg-[#1e293b] !text-[#e2e8f0] !border-[#334155] !text-xs !rounded-lg !px-3 !py-2 !shadow-xl"})
+             .addTo(map);
+        });
+        if(routeCoords && routeCoords.length>1){
+            L.polyline(routeCoords,{color:"#22d3ee",weight:3,opacity:.8,dashArray:"8 6"}).addTo(map);
+            routeCoords.forEach((coord,i)=>{
+                L.marker(coord,{icon:L.divIcon({html:`<div style="background:${i===0?"#22c55e":"#3b82f6"};color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;border:2px solid #fff;box-shadow:0 0 8px rgba(0,0,0,.4)">${i+1}</div>`,iconSize:[20,20],iconAnchor:[10,10]})}).addTo(map);
+            });
+        }
+        mapInstanceRef.current = map;
+        setTimeout(()=>map.invalidateSize(),100);
+        return ()=>{ if(mapInstanceRef.current){mapInstanceRef.current.remove();mapInstanceRef.current=null;} };
+    },[markers.length,routeCoords?.length]);
+
+    return <div ref={mapRef} className={`rounded-lg overflow-hidden ${className}`} style={{height,minHeight:200}}/>;
+};
+
+/* ═══════════════════════════════════════
+   SHARED NAVIGATION
+   ═══════════════════════════════════════ */
+const TopNavBar = ({title=""}) => (
+    <nav className="bg-bg-secondary/80 backdrop-blur-md border-b border-brd flex justify-between items-center w-full px-4 h-14 shrink-0 z-50">
+        <div className="flex items-center gap-4">
+            <span className="text-lg font-extrabold text-txt-bright tracking-tight">ParkSight AI</span>
+            {title && <><div className="h-5 w-px bg-brd mx-1"/><span className="text-[10px] font-semibold text-txt-muted uppercase tracking-[0.1em] bg-srf px-2.5 py-1 rounded border border-brd">{title}</span></>}
+            <div className="hidden md:flex items-center ml-3 gap-1.5 bg-srf px-3 py-1.5 rounded-lg border border-brd focus-within:border-accent-cyan transition-colors">
+                <Icon name="search" size={16} className="text-txt-muted"/>
+                <input className="bg-transparent border-none text-txt-DEFAULT text-xs focus:ring-0 focus:outline-none w-52 placeholder:text-txt-muted" placeholder="Search operational data..."/>
+            </div>
+        </div>
+        <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 bg-srf px-3 py-1.5 rounded border border-brd">
+                <StatusDot color="#22c55e" pulse/>
+                <span className="text-[10px] font-semibold text-status-low uppercase tracking-wider">System Live</span>
+            </div>
+            <button className="bg-critical-bg border border-status-critical/40 text-status-critical px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wide hover:bg-status-critical/20 transition-colors flex items-center gap-1">
+                <Icon name="warning" size={14}/> Emergency
+            </button>
+            <div className="flex items-center gap-1 text-txt-muted border-l border-brd pl-3">
+                <button className="p-1.5 hover:bg-srf-hover rounded transition-colors"><Icon name="notifications" size={18}/></button>
+                <button className="p-1.5 hover:bg-srf-hover rounded transition-colors"><Icon name="settings" size={18}/></button>
+                <button className="p-1.5 hover:bg-srf-hover rounded transition-colors"><Icon name="help" size={18}/></button>
+                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-accent-blue to-accent-indigo flex items-center justify-center text-[10px] text-white font-bold ml-1">U</div>
+            </div>
+        </div>
+    </nav>
+);
+
+const SideNavBar = () => {
+    const location = useLocation();
+    const nav = [
+        {path:"/",icon:"dashboard",label:"Executive"},
+        {path:"/intelligence",icon:"insights",label:"Intelligence"},
+        {path:"/operations",icon:"local_police",label:"Operations"},
+        {path:"/analytics",icon:"analytics",label:"Emerging Threats"},
+        {path:"/vehicle-intel",icon:"directions_car",label:"Vehicle Intel"},
+        {path:"/planning",icon:"route",label:"Planning"},
+        {path:"/simulator",icon:"simulation",label:"Simulator"},
+    ];
+    return (
+        <aside className="bg-bg-secondary border-r border-brd h-full w-sidebar shrink-0 flex-col hidden md:flex">
+            <div className="p-3 border-b border-brd flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-accent-blue to-accent-indigo flex items-center justify-center"><span className="text-white text-sm">🛡️</span></div>
+                <div><div className="text-sm font-bold text-txt-bright">BTP Command</div><div className="text-[9px] text-txt-muted uppercase tracking-[0.12em]">Operational Intelligence</div></div>
+            </div>
+            <div className="px-3 py-2.5">
+                <button className="w-full bg-gradient-to-r from-accent-blue to-accent-cyan text-white py-2 rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity">
+                    <Icon name="add" size={15}/> New Patrol Plan
+                </button>
+            </div>
+            <nav className="flex-1 overflow-y-auto py-1 flex flex-col gap-0.5">
+                {nav.map(n => {
+                    const active = location.pathname===n.path;
+                    return (
+                        <Link key={n.path} to={n.path} className={`flex items-center px-3 py-2 mx-1 rounded-r-lg transition-all text-[11px] font-semibold ${active?"text-accent-cyan bg-accent-cyan/8 border-l-[3px] border-accent-cyan":"text-txt-secondary hover:bg-srf-hover border-l-[3px] border-transparent"}`}>
+                            <Icon name={n.icon} size={18} className="mr-3"/>{n.label}
+                        </Link>
+                    );
+                })}
+            </nav>
+            <div className="border-t border-brd p-2 flex flex-col gap-0.5">
+                {[["settings","Settings"],["help","Support"]].map(([i,l])=><button key={i} className="flex items-center px-3 py-2 text-txt-secondary text-[11px] hover:bg-srf-hover rounded transition-colors"><Icon name={i} size={16} className="mr-3"/>{l}</button>)}
+            </div>
+        </aside>
+    );
+};
+
+/* ═══════════════════════════════════════════════════════════
+   PAGE: EXECUTIVE DASHBOARD
+   ═══════════════════════════════════════════════════════════ */
+const VitalCard = ({label,value,sub,trend,trendDir,progress,progressColor}) => (
+    <div className="card p-3 anim-fadein">
+        <div className="text-[9px] font-bold uppercase tracking-[0.08em] text-txt-muted mb-1">{label}</div>
+        <div className="text-xl font-extrabold text-txt-bright leading-tight">{value}</div>
+        {sub && <div className="text-[10px] text-txt-secondary mt-1">{sub}</div>}
+        {trend && <div className={`text-[10px] font-semibold mt-1 ${trendDir==="up"?"text-status-critical":trendDir==="down"?"text-status-low":"text-txt-muted"}`}>{trend}</div>}
+        {progress!=null && <div className="mt-2"><ProgressBar value={progress} color={progressColor||"#22c55e"}/></div>}
+    </div>
+);
+
+const ExecutiveDashboard = () => {
+    const K = D.kpis;
+    const topH = D.hotspots.filter(h=>h.band==="Critical"||h.band==="High").slice(0,6);
+    return (
+        <div className="flex-1 flex overflow-hidden">
+            {/* Vital Signs */}
+            <div className="w-[240px] shrink-0 overflow-y-auto p-3 flex flex-col gap-2 border-r border-brd">
+                <SectionHeader icon="monitoring" title="Vital Signs"/>
+                <VitalCard label="Total Violations" value={K.displayViolations.toLocaleString()} trend="↗ +4.2% today" trendDir="up"/>
+                <VitalCard label="Readiness Score" value={`${K.readiness}/100`} progress={K.readiness} progressColor="#22c55e"/>
+                <VitalCard label="Critical Hotspots" value={K.critical} sub="Active Intervention Required"/>
+                <VitalCard label="Emerging Hotspots" value={K.emerging} sub="Predictive model flag"/>
+                <VitalCard label="Repeat Offenders" value={K.repeatOffenders} trend="↘ -2.1% this week" trendDir="down"/>
+                <VitalCard label="Congestion Reduction" value="15%" sub="vs 30-day baseline"/>
+            </div>
+            {/* Center — Map + Tables */}
+            <div className="flex-1 flex flex-col overflow-hidden p-3 gap-3 min-w-0">
+                <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold text-txt-bright">Bengaluru Ops Live</span>
+                    <div className="flex gap-2 text-txt-muted">{["layers","filter_alt","my_location"].map(i=><button key={i} className="p-1 hover:text-accent-cyan transition-colors"><Icon name={i} size={16}/></button>)}</div>
+                </div>
+                <div className="flex-1 rounded-lg overflow-hidden border border-brd min-h-[300px]">
+                    <LeafletMap markers={D.hotspots} height="100%" showHeat/>
+                </div>
+                <div className="flex gap-3 h-[220px] shrink-0">
+                    {/* Top Priority Hotspots */}
+                    <div className="flex-1 card p-3 overflow-auto">
+                        <SectionHeader icon="priority_high" title="Top Priority Hotspots" border={false}/>
+                        <table className="w-full text-[11px]">
+                            <thead><tr className="text-[9px] text-txt-muted uppercase tracking-wide"><th className="text-left pb-2">Location</th><th className="text-center pb-2">Risk Lvl</th><th className="text-right pb-2">Violations</th></tr></thead>
+                            <tbody>{topH.map(h=><tr key={h.id} className="border-t border-brd-subtle hover:bg-accent-cyan/[0.03] transition-colors">
+                                <td className="py-1.5 text-txt-DEFAULT font-medium">{h.name}</td>
+                                <td className="py-1.5 text-center"><Badge band={h.band} small/></td>
+                                <td className="py-1.5 text-right font-mono text-accent-cyan font-medium">{h.violations.toLocaleString()}</td>
+                            </tr>)}</tbody>
+                        </table>
+                    </div>
+                    {/* Risk Trend */}
+                    <div className="w-[280px] card p-3 shrink-0">
+                        <SectionHeader icon="trending_up" title="Citywide Risk Trend" border={false}/>
+                        <MiniBarChart height={140} data={D.stations.slice(0,6).map((s,i)=>({value:s.maxPriority,label:s.name.replace(" Traffic PS","").slice(0,8),color:["#ef4444","#f97316","#f97316","#eab308","#3b82f6","#22c55e"][i]}))}/>
+                    </div>
+                </div>
+            </div>
+            {/* Tactical Feed */}
+            <div className="w-[290px] shrink-0 overflow-y-auto p-3 flex flex-col gap-3 border-l border-brd">
+                <div className="text-sm font-bold text-txt-bright">Tactical Feed</div>
+                <span className="self-start text-[10px] font-bold bg-critical-bg text-status-critical px-2.5 py-0.5 rounded-full border border-status-critical/30">Active Alerts ({D.alerts.length})</span>
+                {D.alerts.map((a,i)=>{
+                    const bc = {critical:"#ef4444",high:"#f97316",elevated:"#f59e0b"}[a.severity]||"#94a3b8";
+                    return <div key={i} className="card p-3 anim-fadein" style={{borderLeftWidth:3,borderLeftColor:bc,animationDelay:`${i*0.1}s`}}>
+                        <div className="flex justify-between"><span className="text-[9px] font-bold uppercase tracking-wide" style={{color:bc}}>{a.type}</span><span className="text-[9px] text-txt-muted">{a.time}</span></div>
+                        <div className="text-xs font-semibold text-txt-bright mt-1">{a.location}</div>
+                        <div className="text-[10px] text-txt-secondary mt-0.5 leading-relaxed">{a.text}</div>
+                    </div>;
+                })}
+                <div className="flex items-center gap-1.5 mt-2 text-accent-cyan text-xs font-semibold"><Icon name="auto_awesome" size={14}/> AI Recommendations</div>
+                {D.recommendations.slice(0,2).map((r,i)=>(
+                    <div key={i} className="card p-3 anim-fadein" style={{animationDelay:`${(i+3)*0.1}s`}}>
+                        <div className="text-xs font-bold text-txt-bright mb-1">{r.title}</div>
+                        <div className="text-[10px] text-txt-secondary leading-relaxed mb-2">{r.text}</div>
+                        <button className={`text-[10px] font-semibold px-3 py-1 rounded ${r.priority==="critical"?"bg-accent-cyan text-bg":"bg-status-critical text-white"} hover:opacity-80 transition-opacity`}>{r.action}</button>
+                    </div>
+                ))}
+                {/* Threat Summary */}
+                <div className="card p-3 mt-2 anim-fadein" style={{animationDelay:'0.5s'}}>
+                    <div className="text-[9px] font-bold uppercase tracking-wide text-txt-muted mb-2">Threat Summary (Next 2 hrs)</div>
+                    <div className="flex items-start gap-2">
+                        <span className="text-lg">⚠️</span>
+                        <div className="text-[10px] text-txt-secondary leading-relaxed">
+                            <span className="font-semibold text-status-critical">{D.kpis.critical} critical</span> hotspots require immediate attention.
+                            Rain expected in South Zone — model indicates <span className="font-bold text-status-critical">45% increase</span> probability on major arterials.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+/* ═══════════════════════════════════════════════════════════
+   PAGE: HOTSPOT INTELLIGENCE
+   ═══════════════════════════════════════════════════════════ */
+const HotspotIntelligence = () => {
+    const [selected,setSelected] = useState(D.hotspots[1]);
+    const criticalJunctions = D.hotspots.filter(h=>h.band==="Critical"||h.band==="High").slice(0,5);
+    const bandCounts = {Critical:D.hotspots.filter(h=>h.band==="Critical").length,High:D.hotspots.filter(h=>h.band==="High").length,Medium:D.hotspots.filter(h=>h.band==="Medium").length,Low:D.hotspots.filter(h=>h.band==="Low").length};
+    return (
+        <div className="flex-1 flex overflow-hidden">
+            <div className="flex-1 flex flex-col p-3 gap-2 min-w-0">
+                <LeafletMap markers={D.hotspots} height="100%" className="flex-1"/>
+                <div className="flex items-center gap-3 bg-srf rounded-lg border border-brd px-3 py-2">
+                    <span className="text-[10px] font-semibold text-txt-secondary uppercase tracking-wide">Congestion Impact (PCIS)</span>
+                    <div className="flex-1 h-1.5 rounded-full" style={{background:"linear-gradient(90deg,#22c55e,#eab308,#f97316,#ef4444)"}}/>
+                    <div className="flex gap-8 text-[9px] text-txt-muted"><span>Low</span><span>Severe</span></div>
+                </div>
+            </div>
+            <div className="w-[340px] shrink-0 overflow-y-auto p-3 flex flex-col gap-3 border-l border-brd">
+                <div className="text-sm font-bold text-txt-bright">Hotspot Analytics</div>
+                <SectionHeader icon="bolt" title="Critical Junctions"/>
+                <table className="w-full text-[11px]">
+                    <thead><tr className="text-[9px] text-txt-muted uppercase"><th className="text-left pb-2">Junction</th><th className="text-right pb-2">Violations</th><th className="text-right pb-2">PCIS</th><th className="text-center pb-2">Status</th></tr></thead>
+                    <tbody>{criticalJunctions.map(h=>(
+                        <tr key={h.id} className={`border-t border-brd-subtle cursor-pointer transition-colors ${selected?.id===h.id?"bg-accent-cyan/[0.06]":"hover:bg-srf-hover"}`} onClick={()=>setSelected(h)}>
+                            <td className="py-1.5 font-medium">{h.name}</td>
+                            <td className="py-1.5 text-right font-mono text-accent-cyan">{h.violations.toLocaleString()}</td>
+                            <td className="py-1.5 text-right font-mono" style={{color:BAND_COLORS[h.band]}}>{h.pcis}</td>
+                            <td className="py-1.5 text-center"><StatusDot color={BAND_COLORS[h.band]}/></td>
+                        </tr>
+                    ))}</tbody>
+                </table>
+                <SectionHeader icon="bar_chart" title="PCIS Distribution"/>
+                <MiniBarChart height={80} data={Object.entries(bandCounts).map(([b,v])=>({value:v,label:b.slice(0,4),color:BAND_COLORS[b]}))}/>
+                {selected && (
+                    <div className="card p-3 border-accent-cyan anim-fadein">
+                        <div className="flex justify-between items-start mb-2">
+                            <div><div className="text-sm font-bold text-txt-bright">{selected.name}</div><div className="text-[9px] text-txt-muted mt-0.5">ID: {selected.id}</div></div>
+                            <button className="text-[10px] bg-srf border border-brd px-2 py-1 rounded text-txt-secondary hover:border-accent-cyan hover:text-accent-cyan transition-colors">Dispatch Unit</button>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 mb-3">
+                            <div className="bg-bg-secondary rounded-lg p-2"><div className="text-[8px] text-txt-muted uppercase">Impact Score</div><div className="text-lg font-bold" style={{color:BAND_COLORS[selected.band]}}>{selected.pcis}</div></div>
+                            <div className="bg-bg-secondary rounded-lg p-2"><div className="text-[8px] text-txt-muted uppercase">Trend (24h)</div><div className="text-lg font-bold text-txt-bright">{selected.drift==="Emerging"?"+12%":"-3%"} 📈</div></div>
+                        </div>
+                        <p className="text-[10px] text-txt-secondary leading-relaxed mb-3">Primary congestion driver identified. Total violations: {selected.violations.toLocaleString()}. Drift: {selected.drift}.</p>
+                        <div className="flex gap-2">
+                            <button className="flex-1 bg-accent-cyan text-bg text-[10px] font-semibold py-1.5 rounded hover:opacity-85 transition-opacity">View Cameras</button>
+                            <button className="flex-1 bg-srf border border-brd text-txt-secondary text-[10px] font-semibold py-1.5 rounded hover:border-accent-cyan hover:text-accent-cyan transition-colors">Issue Alert</button>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
+
+/* ═══════════════════════════════════════════════════════════
+   PAGE: OPERATIONS CENTER
+   ═══════════════════════════════════════════════════════════ */
+const OperationsCenter = () => {
+    const [tab,setTab] = useState(0);
+    const tabs = ["⚡ Priority Actions","🔥 Emerging Alerts","🚔 Deployments","🎯 Offenders"];
+    return (
+        <div className="flex-1 overflow-y-auto p-4">
+            {/* Ticker */}
+            <div className="w-full bg-srf border border-brd rounded-lg p-2 mb-4 flex items-center overflow-hidden">
+                <div className="flex items-center gap-2 pr-3 border-r border-brd shrink-0"><div className="w-2 h-2 rounded-full bg-status-critical animate-pulse"/><span className="text-[9px] font-bold text-status-critical uppercase tracking-widest">Live</span></div>
+                <div className="overflow-hidden flex-1 pl-3 relative h-4"><div className="absolute whitespace-nowrap font-mono text-[11px] text-txt-secondary" style={{animation:"ticker 25s linear infinite"}}>
+                    Koramangala 4th Block: Severe bottleneck detected. Units en route. &nbsp;|&nbsp; MG Road Junction: Drift score exceeds 80 — escalating to Critical. &nbsp;|&nbsp; Silk Board: 3 repeat offenders detected in last hour.
+                </div></div>
+            </div>
+            {/* KPIs */}
+            <div className="grid grid-cols-5 gap-3 mb-4">
+                {[["Active Actions",D.recommendations.length,"auto_awesome"],["Emerging Alerts",D.alerts.length,"warning"],["Deployments",D.routes.length,"local_police"],["Offender Targets",D.offenders.length,"directions_car"],["Critical Scope",D.kpis.critical,"crisis_alert"]].map(([l,v,ic],i)=>(
+                    <div key={i} className="card p-3 flex items-center gap-3 anim-fadein" style={{animationDelay:`${i*0.05}s`}}>
+                        <div className="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center"><Icon name={ic} size={16} className="text-accent-cyan"/></div>
+                        <div><div className="text-lg font-bold text-txt-bright">{v}</div><div className="text-[9px] text-txt-muted uppercase tracking-wide">{l}</div></div>
+                    </div>
+                ))}
+            </div>
+            {/* Tabs */}
+            <div className="flex gap-0 border-b border-brd mb-4">
+                {tabs.map((t,i)=><button key={i} onClick={()=>setTab(i)} className={`px-4 py-2 text-[11px] font-semibold transition-colors ${tab===i?"text-accent-cyan border-b-2 border-accent-cyan bg-accent-cyan/[0.04]":"text-txt-muted hover:text-txt-secondary"}`}>{t}</button>)}
+            </div>
+            {tab===0 && <div className="flex flex-col gap-3">{D.recommendations.map((r,i)=>(
+                <div key={i} className="card p-4 anim-fadein" style={{borderLeftWidth:3,borderLeftColor:r.priority==="critical"?"#ef4444":"#f97316",animationDelay:`${i*.08}s`}}>
+                    <div className="flex justify-between items-start">
+                        <div><div className="text-xs font-bold text-txt-bright mb-1">{r.title}</div><div className="text-[11px] text-txt-secondary leading-relaxed">{r.text}</div></div>
+                        <Badge band={r.priority==="critical"?"Critical":"High"} small/>
+                    </div>
+                    <div className="flex gap-2 mt-3">
+                        <button className="bg-accent-cyan text-bg text-[10px] font-semibold px-3 py-1 rounded hover:opacity-85">Execute</button>
+                        <button className="bg-srf border border-brd text-txt-secondary text-[10px] font-semibold px-3 py-1 rounded hover:border-accent-cyan">Dismiss</button>
+                    </div>
+                </div>
+            ))}</div>}
+            {tab===1 && <div className="flex flex-col gap-3">{D.alerts.map((a,i)=>{
+                const bc = {critical:"#ef4444",high:"#f97316",elevated:"#f59e0b"}[a.severity];
+                return <div key={i} className="card p-4 anim-fadein" style={{borderLeftWidth:3,borderLeftColor:bc,animationDelay:`${i*.08}s`}}>
+                    <div className="text-[9px] font-bold uppercase tracking-wide mb-1" style={{color:bc}}>🔥 {a.type} — {a.time}</div>
+                    <div className="text-xs font-bold text-txt-bright">{a.location}</div>
+                    <div className="text-[11px] text-txt-secondary mt-1">{a.text}</div>
+                </div>;
+            })}</div>}
+            {tab===2 && <div className="grid grid-cols-3 gap-3">{D.routes.map((r,i)=>(
+                <div key={i} className="card p-4 anim-fadein" style={{borderLeftWidth:3,borderLeftColor:"#3b82f6",animationDelay:`${i*.08}s`}}>
+                    <div className="flex justify-between mb-2"><span className="text-xs font-bold text-txt-bright">{r.zone}</span><Badge band={r.band==="High"?"High":"Low"} small/></div>
+                    <div className="text-[10px] text-txt-muted mb-1">{r.id}</div>
+                    <div className="flex items-center gap-1.5 text-[10px] text-txt-secondary mt-2"><Icon name="person" size={14}/>{r.officer}<span className="ml-auto">ETA: {r.eta}</span></div>
+                </div>
+            ))}</div>}
+            {tab===3 && <div className="flex flex-col gap-3">{D.offenders.map((o,i)=>(
+                <div key={i} className="card p-4 anim-fadein" style={{animationDelay:`${i*.08}s`}}>
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="text-sm font-bold font-mono text-accent-cyan">{o.plate}</div>
+                            <TrendArrow dir={o.trend}/>
+                        </div>
+                        <div className="text-right"><span className="text-lg font-bold text-status-critical">{o.violations}</span><span className="text-[9px] text-txt-muted ml-1">violations</span></div>
+                    </div>
+                    <div className="text-[10px] text-txt-secondary mt-2">{o.type} — {o.location} — Active span: {o.span} days</div>
+                    <div className="flex gap-2 mt-3">
+                        <button className="bg-status-critical text-white text-[10px] font-semibold px-3 py-1 rounded hover:opacity-85">🚩 Flag for Towing</button>
+                        <button className="bg-srf border border-brd text-txt-secondary text-[10px] font-semibold px-3 py-1 rounded hover:border-accent-cyan">📋 Issue Citation</button>
+                    </div>
+                </div>
+            ))}</div>}
+        </div>
+    );
+};
+
+/* ═══════════════════════════════════════════════════════════
+   PAGE: ANALYTICS
+   ═══════════════════════════════════════════════════════════ */
+const AnalyticsDashboard = () => {
+    const bandCounts = {Critical:D.hotspots.filter(h=>h.band==="Critical").length,High:D.hotspots.filter(h=>h.band==="High").length,Medium:D.hotspots.filter(h=>h.band==="Medium").length,Low:D.hotspots.filter(h=>h.band==="Low").length};
+    const total = Object.values(bandCounts).reduce((s,v)=>s+v,0);
+    const emerging = D.hotspots.filter(h=>h.drift==="Emerging");
+    return (
+        <div className="flex-1 overflow-y-auto p-4">
+            <div className="flex items-center justify-between mb-4">
+                <div>
+                    <h1 className="text-xl font-bold text-txt-bright">Emerging Threat Center</h1>
+                    <p className="text-xs text-txt-secondary mt-0.5">Real-time identification of accelerating congestion risks.</p>
+                </div>
+                <div className="text-right">
+                    <div className="text-[9px] text-txt-muted uppercase tracking-wide">T-Minus</div>
+                    <div className="text-2xl font-bold text-txt-bright font-mono">00:14:22</div>
+                    <div className="text-[10px] text-txt-secondary">to next cycle</div>
+                </div>
+            </div>
+            <div className="grid grid-cols-12 gap-3">
+                {/* Active Hotspots */}
+                <div className="col-span-3 flex flex-col gap-3">
+                    <SectionHeader icon="warning" title="Active Hotspots" right={<span className="text-[9px] font-bold bg-status-critical text-white px-2 py-0.5 rounded-full">{emerging.length} NEW</span>}/>
+                    {D.alerts.map((a,i)=>{
+                        const bc = {critical:"#ef4444",high:"#f97316",elevated:"#f59e0b"}[a.severity];
+                        return <div key={i} className="card p-3 anim-fadein" style={{borderLeftWidth:3,borderLeftColor:bc,animationDelay:`${i*.08}s`}}>
+                            <div className="flex justify-between"><span className="text-[8px] font-bold uppercase" style={{color:bc}}>{a.type}</span><span className="text-[8px] text-txt-muted">{a.time}</span></div>
+                            <div className="text-[11px] font-semibold text-txt-bright mt-1">{a.location}</div>
+                            <div className="text-[10px] text-txt-secondary mt-0.5">{a.text}</div>
+                        </div>;
+                    })}
+                </div>
+                {/* Rankings */}
+                <div className="col-span-5">
+                    <SectionHeader icon="leaderboard" title="Emerging Hotspot Rankings"/>
+                    <div className="card p-3">
+                        <table className="w-full text-[11px]">
+                            <thead><tr className="text-[9px] text-txt-muted uppercase tracking-wide"><th className="text-left pb-2">Location ID</th><th className="text-left pb-2">Zone</th><th className="text-right pb-2">Risk Score</th><th className="text-center pb-2">Drift</th><th className="text-right pb-2">Volume</th></tr></thead>
+                            <tbody>{emerging.slice(0,6).map(h=>(
+                                <tr key={h.id} className="border-t border-brd-subtle hover:bg-accent-cyan/[0.03] transition-colors">
+                                    <td className="py-1.5 font-mono text-txt-secondary">{h.id}</td>
+                                    <td className="py-1.5">{h.name.split(" ")[0]}</td>
+                                    <td className="py-1.5 text-right font-mono font-semibold" style={{color:h.driftScore>=80?"#ef4444":h.driftScore>=60?"#f97316":"#eab308"}}>{h.driftScore.toFixed(1)}</td>
+                                    <td className="py-1.5 text-center"><TrendArrow dir="up"/></td>
+                                    <td className="py-1.5 text-right font-mono text-txt-secondary">{h.volume.toLocaleString()}/h</td>
+                                </tr>
+                            ))}</tbody>
+                        </table>
+                    </div>
+                    {/* Station cards */}
+                    <div className="grid grid-cols-2 gap-3 mt-3">
+                        {D.stations.slice(0,2).map((s,i)=>(
+                            <div key={i} className="card p-3" style={{borderLeftWidth:3,borderLeftColor:"#3b82f6"}}>
+                                <div className="text-xs font-bold text-txt-bright mb-2">{s.name.replace(" Traffic PS","")}</div>
+                                <div className="flex justify-between">
+                                    <div><div className="text-[8px] text-txt-muted uppercase">Status</div><div className="flex items-center gap-1.5 mt-1"><StatusDot color={s.critical>3?"#ef4444":"#f59e0b"}/><span className="text-[10px] font-medium" style={{color:s.critical>3?"#ef4444":"#f59e0b"}}>{s.critical>3?"Critical Load":"Elevated"}</span></div></div>
+                                    <div className="text-right"><div className="text-[8px] text-txt-muted uppercase">Active Units</div><div className="text-lg font-bold text-txt-bright mt-0.5">{String(s.critical+s.high).padStart(2,"0")}/{String(s.total).padStart(2,"0")}</div></div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                {/* Risk Acceleration */}
+                <div className="col-span-4 flex flex-col gap-3">
+                    <SectionHeader icon="show_chart" title="Risk Acceleration (24h)"/>
+                    <div className="card p-3 flex-1">
+                        <MiniBarChart height={220} data={emerging.slice(0,8).map(h=>({value:h.driftScore,label:h.name.slice(0,6),color:h.driftScore>=80?"#ef4444":h.driftScore>=60?"#f97316":"#3b82f6"}))}/>
+                    </div>
+                    <div className="card p-3">
+                        <div className="flex justify-between items-center">
+                            <span className="text-[10px] font-semibold text-status-critical">Global Drift Coefficient</span>
+                            <span className="text-sm font-bold text-status-critical">+4.2σ</span>
+                        </div>
+                        <ProgressBar value={42} color="#ef4444" h={4}/>
+                    </div>
+                    <div className="card p-3">
+                        <div className="flex items-center justify-center gap-4">
+                            <DonutChart size={80} thickness={10} segments={Object.entries(bandCounts).map(([b,v])=>({value:v,color:BAND_COLORS[b]}))}/>
+                            <div className="flex flex-col gap-1">{Object.entries(bandCounts).map(([b,v])=><div key={b} className="flex items-center gap-2 text-[10px]"><div className="w-2 h-2 rounded-full" style={{background:BAND_COLORS[b]}}/><span className="text-txt-secondary">{b}</span><span className="font-mono font-semibold ml-auto text-txt-bright">{v}</span></div>)}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* Recommended Actions */}
+            <div className="mt-4">
+                <SectionHeader icon="auto_awesome" title="Recommended Actions"/>
+                <div className="grid grid-cols-3 gap-3">
+                    {D.recommendations.map((r,i)=>(
+                        <div key={i} className="card p-4 anim-fadein" style={{borderLeftWidth:3,borderLeftColor:r.priority==="critical"?"#ef4444":"#f97316",animationDelay:`${i*.08}s`}}>
+                            <div className="text-xs font-bold text-txt-bright mb-1">{r.title}</div>
+                            <div className="text-[10px] text-txt-secondary leading-relaxed mb-3">{r.text}</div>
+                            <div className="flex gap-2">
+                                <button className="bg-accent-cyan text-bg text-[10px] font-semibold px-3 py-1 rounded hover:opacity-85">Execute</button>
+                                <button className="bg-srf border border-brd text-txt-secondary text-[10px] font-semibold px-3 py-1 rounded hover:border-accent-cyan">Dismiss</button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+/* ═══════════════════════════════════════════════════════════
+   PAGE: VEHICLE INTEL (Repeat Offenders — Screenshot 4)
+   ═══════════════════════════════════════════════════════════ */
+const VehicleIntel = () => {
+    const [selIdx,setSelIdx] = useState(0);
+    const sel = D.offenders[selIdx];
+    const confScore = sel.score;
+    const activityData = [{day:"Mon",critical:0,standard:3},{day:"Tue",critical:1,standard:1},{day:"Wed",critical:0,standard:2},{day:"Thu",critical:2,standard:0},{day:"Today",critical:1,standard:4}];
+    const maxAct = Math.max(...activityData.map(d=>d.critical+d.standard),1);
+    return (
+        <div className="flex-1 overflow-y-auto p-4">
+            <div className="grid grid-cols-12 gap-4 h-full">
+                {/* Left: Offenders Table + Enforcement Card */}
+                <div className="col-span-4 flex flex-col gap-4">
+                    <div className="card p-4 flex-1">
+                        <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-2"><Icon name="warning" size={16} className="text-status-critical"/><span className="text-sm font-bold text-txt-bright">Top Offenders (72h)</span></div>
+                            <Icon name="filter_alt" size={16} className="text-txt-muted cursor-pointer hover:text-accent-cyan"/>
+                        </div>
+                        <table className="w-full text-[11px]">
+                            <thead><tr className="text-[9px] text-txt-muted uppercase tracking-wide"><th className="text-left pb-2">Plate No.</th><th className="text-right pb-2">Violations</th><th className="text-center pb-2">Trend</th></tr></thead>
+                            <tbody>{D.offenders.map((o,i)=>(
+                                <tr key={i} className={`border-t border-brd-subtle cursor-pointer transition-colors ${selIdx===i?"bg-status-critical/[0.08]":"hover:bg-srf-hover"}`} onClick={()=>setSelIdx(i)}>
+                                    <td className="py-2 font-mono font-semibold text-accent-cyan">{o.plate}</td>
+                                    <td className="py-2 text-right font-mono font-bold text-status-critical">{o.violations}</td>
+                                    <td className="py-2 text-center"><TrendArrow dir={o.trend}/></td>
+                                </tr>
+                            ))}</tbody>
+                        </table>
+                    </div>
+                    {/* Enforcement Recommendation Card */}
+                    <div className="card p-4 border-t-2 border-t-status-critical">
+                        <div className="text-[9px] font-bold uppercase tracking-wide text-status-critical mb-2">Enforcement Recommendation</div>
+                        <div className="text-lg font-bold text-txt-bright mb-2">Target: {sel.plate}</div>
+                        <p className="text-[11px] text-txt-secondary leading-relaxed mb-3">
+                            Vehicle has exceeded critical threshold ({sel.violations} violations in 72h). Primary offense: {sel.type} ({sel.location}).
+                        </p>
+                        <div className="mb-3">
+                            <div className="flex justify-between mb-1"><span className="text-[9px] text-txt-muted">Confidence Score</span><span className="text-[10px] font-mono font-bold text-accent-cyan">{confScore.toFixed(1)}%</span></div>
+                            <ProgressBar value={confScore} color="#22d3ee" h={5}/>
+                        </div>
+                        <div className="flex gap-2">
+                            <button className="bg-status-critical text-white text-[10px] font-semibold px-3 py-1.5 rounded hover:opacity-85 flex items-center gap-1"><Icon name="flag" size={13}/> Flag for Towing</button>
+                            <button className="bg-srf border border-brd text-txt-secondary text-[10px] font-semibold px-3 py-1.5 rounded hover:border-accent-cyan flex items-center gap-1"><Icon name="receipt_long" size={13}/> Issue Citation</button>
+                        </div>
+                    </div>
+                </div>
+                {/* Right: Map + Activity Timeline */}
+                <div className="col-span-8 flex flex-col gap-4">
+                    {/* Hotspot Visitation Map */}
+                    <div className="card p-4 flex-1 flex flex-col">
+                        <div className="flex items-center gap-2 mb-2">
+                            <StatusDot color="#ef4444"/>
+                            <span className="text-[11px] font-semibold text-txt-secondary">Hotspot Visitation: {sel.plate}</span>
+                        </div>
+                        <div className="flex-1 rounded-lg overflow-hidden border border-brd min-h-[300px]">
+                            <LeafletMap markers={D.hotspots.slice(0,sel.hotspots+2)} height="100%" zoom={13}/>
+                        </div>
+                    </div>
+                    {/* Activity Timeline */}
+                    <div className="card p-4">
+                        <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-2"><Icon name="show_chart" size={16} className="text-txt-muted"/><span className="text-[11px] font-bold text-txt-bright">Activity Timeline</span></div>
+                            <div className="flex gap-4 text-[9px]">
+                                <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-status-critical"/><span className="text-txt-muted">Critical</span></div>
+                                <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-accent-blue"/><span className="text-txt-muted">Standard</span></div>
+                            </div>
+                        </div>
+                        <svg viewBox="0 0 300 120" className="w-full" style={{height:120}}>
+                            {activityData.map((d,i)=>{
+                                const bw=50, x=i*60+5;
+                                const critH=(d.critical/maxAct)*80, stdH=(d.standard/maxAct)*80;
+                                return <g key={i}>
+                                    <rect x={x} y={100-stdH-critH} width={20} height={critH} rx={2} fill="#ef4444" opacity={0.85}/>
+                                    <rect x={x} y={100-stdH} width={20} height={stdH} rx={2} fill="#3b82f6" opacity={0.85}/>
+                                    <rect x={x+24} y={100-stdH} width={20} height={stdH} rx={2} fill="#3b82f6" opacity={0.4}/>
+                                    <text x={x+12} y={115} textAnchor="middle" fill="#64748b" fontSize={9} fontFamily="Inter">{d.day}</text>
+                                </g>;
+                            })}
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+/* ═══════════════════════════════════════════════════════════
+   PAGE: PATROL PLANNER
+   ═══════════════════════════════════════════════════════════ */
+const PatrolPlanner = () => {
+    const [selRoute,setSelRoute] = useState(0);
+    const route = D.routes[selRoute];
+    const routeCoords = D.hotspots.slice(selRoute*3,(selRoute+1)*3+1).map(h=>[h.lat,h.lng]);
+    const allocMatrix = [
+        {zone:"North CBD",slots:["OFC-12 (Patrol)","","OFC-12 (Static)","OFC-12 (Static)",""]},
+        {zone:"Tech Park A",slots:["OFC-08 (Priority)","OFC-08 (Priority)","","OFC-24 (Relief)","OFC-24 (Relief)"]},
+        {zone:"Outer Ring S",slots:["OFC-15 (Patrol)","OFC-15 (Patrol)","Break","OFC-15 (Patrol)",""]},
+    ];
+    const slotColors = {"Patrol":"bg-accent-blue","Priority":"bg-status-critical","Static":"bg-accent-indigo","Relief":"bg-accent-cyan text-bg","Break":"bg-srf-hover text-txt-muted"};
+    return (
+        <div className="flex-1 overflow-y-auto p-4">
+            <div className="flex justify-between items-start mb-4">
+                <div><h1 className="text-xl font-bold text-txt-bright">Shift Alpha Deployment</h1><p className="text-xs text-txt-secondary mt-0.5">⏱ 08:00 - 16:00 IST | 20 Jun 2026</p></div>
+                <div className="flex gap-2">
+                    <button className="bg-srf border border-brd text-txt-secondary text-[10px] font-semibold px-4 py-1.5 rounded hover:border-accent-cyan transition-colors">Export Plan</button>
+                    <button className="bg-accent-cyan text-bg text-[10px] font-semibold px-4 py-1.5 rounded hover:opacity-85 transition-opacity">Execute Deployment</button>
+                </div>
+            </div>
+            <div className="grid grid-cols-12 gap-4">
+                {/* Left Panel */}
+                <div className="col-span-3 flex flex-col gap-3">
+                    <SectionHeader icon="local_police" title="Deployment Stats"/>
+                    <div className="card p-3 grid grid-cols-2 gap-3">
+                        <div><div className="text-[8px] text-txt-muted uppercase">Active Officers</div><div className="text-lg font-bold text-accent-cyan">42/50</div></div>
+                        <div><div className="text-[8px] text-txt-muted uppercase">Zone Coverage</div><div className="text-lg font-bold text-txt-bright">84%</div></div>
+                        <div><div className="text-[8px] text-txt-muted uppercase">High Priority</div><div className="text-lg font-bold text-accent-cyan">3 Routes</div></div>
+                        <div><div className="text-[8px] text-txt-muted uppercase">Est. Response</div><div className="text-lg font-bold text-txt-bright">{"<"} 4m</div></div>
+                    </div>
+                    <SectionHeader icon="tune" title="Parameters"/>
+                    <div className="card p-3">
+                        <div className="text-[9px] text-txt-muted italic mb-1">Optimization Goal</div>
+                        <select className="w-full bg-srf border border-brd rounded px-2 py-1.5 text-[11px] text-txt-DEFAULT focus:border-accent-cyan focus:ring-0 mb-3"><option>Max Coverage</option><option>Min Response Time</option><option>Priority Focus</option></select>
+                        <div className="text-[9px] text-txt-muted italic mb-1">Congestion Weight</div>
+                        <input type="range" min="0" max="100" defaultValue="80" className="w-full accent-accent-blue h-1 mb-1"/>
+                        <div className="text-right text-[9px] text-txt-secondary">High (0.8)</div>
+                        <button className="w-full mt-3 bg-accent-cyan text-bg text-[10px] font-semibold py-2 rounded hover:opacity-85 transition-opacity flex items-center justify-center gap-1"><Icon name="auto_awesome" size={14}/> Auto-Optimize</button>
+                    </div>
+                    <SectionHeader icon="map" title="Active Routes"/>
+                    {D.routes.map((r,i)=>(
+                        <div key={i} className={`card p-3 cursor-pointer transition-all ${selRoute===i?"border-accent-cyan":""}`} onClick={()=>setSelRoute(i)}>
+                            <div className="flex justify-between items-start"><div><div className="text-[11px] font-semibold text-txt-bright">{r.zone}</div><div className="text-[9px] text-txt-muted mt-0.5">{r.id}</div></div><Badge band={r.band==="High"?"High":"Low"} small/></div>
+                            <div className="flex items-center gap-1.5 text-[10px] text-txt-secondary mt-2"><Icon name="person" size={13}/>{r.officer}<span className="ml-auto">ETA: {r.eta}</span></div>
+                        </div>
+                    ))}
+                </div>
+                {/* Right — Map + Matrix */}
+                <div className="col-span-9 flex flex-col gap-3">
+                    <div className="card overflow-hidden flex-1 min-h-[350px]">
+                        <LeafletMap markers={D.hotspots.slice(selRoute*3,(selRoute+1)*3+1)} routeCoords={routeCoords} zoom={13} height="100%"/>
+                    </div>
+                    <div className="flex items-center justify-between text-[9px] text-txt-muted px-1">
+                        <span>Map Data: BTP Urban Sensors</span>
+                        <div className="flex gap-4">{[["#3b82f6","Standard Route"],["#ef4444","Priority Action"]].map(([c,l])=><div key={l} className="flex items-center gap-1"><div className="w-2 h-2 rounded-full" style={{background:c}}/>{l}</div>)}</div>
+                    </div>
+                    <div className="card p-3">
+                        <div className="flex justify-between items-center mb-3">
+                            <SectionHeader icon="grid_on" title="Allocation Matrix" border={false}/>
+                            <div className="flex items-center gap-3 text-[10px] text-txt-secondary"><span className="cursor-pointer">‹</span><span className="font-semibold">08:00 - 12:00</span><span className="cursor-pointer">›</span></div>
+                        </div>
+                        <table className="w-full text-[10px]">
+                            <thead><tr className="text-[8px] text-txt-muted uppercase tracking-wide"><th className="text-left pb-2">Zone / Time</th>{["08:00","09:00","10:00","11:00","12:00"].map(t=><th key={t} className="text-center pb-2">{t}</th>)}</tr></thead>
+                            <tbody>{allocMatrix.map((row,i)=>(
+                                <tr key={i} className="border-t border-brd-subtle">
+                                    <td className="py-1.5 font-semibold text-txt-DEFAULT">{row.zone}</td>
+                                    {row.slots.map((s,j)=>{
+                                        if(!s) return <td key={j}/>;
+                                        const type = s.includes("Priority")?"Priority":s.includes("Static")?"Static":s.includes("Relief")?"Relief":s.includes("Break")?"Break":"Patrol";
+                                        const bg = slotColors[type];
+                                        return <td key={j} className="py-1 px-0.5"><span className={`inline-block px-2 py-0.5 rounded text-[9px] font-semibold text-white ${bg}`}>{s}</span></td>;
+                                    })}
+                                </tr>
+                            ))}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+/* ═══════════════════════════════════════════════════════════
+   PAGE: SIMULATOR
+   ═══════════════════════════════════════════════════════════ */
+const Simulator = () => {
+    const [officers,setOfficers] = useState(8);
+    const [intensity,setIntensity] = useState(0.8);
+    const matched = D.roiScenarios.reduce((a,b)=>Math.abs(b.officers-officers)<Math.abs(a.officers-officers)?b:a);
+    const baseline = 52.79;
+    return (
+        <div className="flex-1 overflow-y-auto p-4">
+            <h1 className="text-xl font-bold text-txt-bright mb-4">Impact Simulator</h1>
+            <div className="grid grid-cols-12 gap-4">
+                {/* Controls */}
+                <div className="col-span-3 flex flex-col gap-3">
+                    <SectionHeader icon="tune" title="Parameters"/>
+                    <div className="card p-3 flex flex-col gap-3">
+                        <div>
+                            <div className="flex justify-between text-[9px] text-txt-muted mb-1"><span>Additional Officers</span><span className="font-mono font-bold text-txt-bright">{officers}</span></div>
+                            <input type="range" min="2" max="20" value={officers} onChange={e=>setOfficers(+e.target.value)} className="w-full accent-accent-blue h-1"/>
+                        </div>
+                        <div>
+                            <div className="flex justify-between text-[9px] text-txt-muted mb-1"><span>Enforcement Intensity</span><span className="font-mono font-bold text-txt-bright">{intensity}×</span></div>
+                            <input type="range" min="5" max="10" value={intensity*10} onChange={e=>setIntensity(+(e.target.value/10).toFixed(1))} className="w-full accent-accent-blue h-1"/>
+                        </div>
+                        <button className="w-full bg-accent-cyan text-bg text-[10px] font-semibold py-2 rounded hover:opacity-85 transition-opacity mt-2">Run Simulation</button>
+                    </div>
+                    <div className="card p-3">
+                        <div className="text-[9px] font-bold text-txt-muted uppercase mb-2">Matched Scenario</div>
+                        <div className="text-lg font-bold text-accent-cyan mb-3">{matched.id}</div>
+                        {[["Officers",matched.officers],["Hotspots Targeted",matched.hotspots],["Patrol Visits/mo",matched.visits],["PCIS Reduction",matched.pcisReduction.toFixed(1)],["Hotspots Improved",matched.hotspotsImproved],["Offender Contacts",matched.offenderContacts]].map(([l,v])=>(
+                            <div key={l} className="flex justify-between py-1 border-b border-brd-subtle last:border-0 text-[10px]"><span className="text-txt-secondary">{l}</span><span className="font-semibold text-txt-bright font-mono">{v}</span></div>
+                        ))}
+                    </div>
+                </div>
+                {/* Visualizations */}
+                <div className="col-span-9 flex flex-col gap-3">
+                    <div className="grid grid-cols-5 gap-3">
+                        {[["Officers",officers,"person"],["Hotspots",matched.hotspots,"whatshot"],["PCIS Δ",`-${matched.pcisReduction.toFixed(1)}`,"trending_down"],["Improved",matched.hotspotsImproved,"check_circle"],["Contacts",matched.offenderContacts,"group"]].map(([l,v,ic],i)=>(
+                            <div key={i} className="card p-3 text-center anim-fadein" style={{animationDelay:`${i*.05}s`}}>
+                                <Icon name={ic} size={18} className="text-accent-cyan mx-auto mb-1"/><div className="text-lg font-bold text-txt-bright">{v}</div><div className="text-[9px] text-txt-muted uppercase">{l}</div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                        {/* Waterfall */}
+                        <div className="card p-4">
+                            <SectionHeader icon="waterfall_chart" title="PCIS Impact Projection" border={false}/>
+                            <div className="flex items-end justify-center gap-6 h-[180px] mt-4">
+                                <div className="flex flex-col items-center gap-1"><div className="bg-accent-blue rounded-t w-14" style={{height:`${(baseline/60)*150}px`}}/><span className="text-[9px] text-txt-muted">Baseline</span><span className="text-xs font-mono font-bold">{baseline}</span></div>
+                                <div className="flex flex-col items-center gap-1"><div className="bg-status-critical rounded-t w-14" style={{height:`${(matched.pcisReduction/60)*150}px`}}/><span className="text-[9px] text-txt-muted">Reduction</span><span className="text-xs font-mono font-bold text-status-critical">-{matched.pcisReduction.toFixed(1)}</span></div>
+                                <div className="flex flex-col items-center gap-1"><div className="bg-status-low rounded-t w-14" style={{height:`${((baseline-matched.pcisReduction)/60)*150}px`}}/><span className="text-[9px] text-txt-muted">After</span><span className="text-xs font-mono font-bold text-status-low">{(baseline-matched.pcisReduction).toFixed(1)}</span></div>
+                            </div>
+                        </div>
+                        {/* Scenarios comparison */}
+                        <div className="card p-4">
+                            <SectionHeader icon="compare" title="All Scenarios" border={false}/>
+                            <MiniBarChart height={200} data={D.roiScenarios.map(s=>({value:s.pcisReduction,label:`S${s.officers}`,color:s.id===matched.id?"#22d3ee":"#3b82f6"}))}/>
+                        </div>
+                    </div>
+                    {/* Full table */}
+                    <div className="card p-3">
+                        <SectionHeader icon="table_chart" title="Scenario Comparison" border={false}/>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-[11px]">
+                                <thead><tr className="text-[9px] text-txt-muted uppercase tracking-wide">{["ID","Officers","Hotspots","Visits/mo","Intensity","PCIS Δ","Improved","Contacts"].map(h=><th key={h} className="text-left pb-2 pr-3">{h}</th>)}</tr></thead>
+                                <tbody>{D.roiScenarios.map(s=>(
+                                    <tr key={s.id} className={`border-t border-brd-subtle ${s.id===matched.id?"bg-accent-cyan/[0.06]":"hover:bg-srf-hover"} transition-colors`}>
+                                        <td className="py-1.5 font-mono font-semibold text-accent-cyan">{s.id}</td><td className="py-1.5 font-mono">{s.officers}</td><td className="py-1.5 font-mono">{s.hotspots}</td><td className="py-1.5 font-mono">{s.visits}</td><td className="py-1.5 font-mono">{s.intensity}×</td><td className="py-1.5 font-mono text-status-critical">-{s.pcisReduction.toFixed(1)}</td><td className="py-1.5 font-mono">{s.hotspotsImproved}</td><td className="py-1.5 font-mono">{s.offenderContacts}</td>
+                                    </tr>
+                                ))}</tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+/* ═══════════════════════════════════════════════════════════
+   APP + ROUTING
+   ═══════════════════════════════════════════════════════════ */
+const titleMap = {"/":"Executive Dashboard","/intelligence":"Hotspot Intelligence","/operations":"Operations Center","/analytics":"Emerging Threats","/vehicle-intel":"Intelligence Module","/planning":"Patrol Planner","/simulator":"Impact Simulator"};
+
+const App = () => {
+    const location = useLocation();
+    return (
+        <div className="flex flex-col h-screen overflow-hidden">
+            <TopNavBar title={titleMap[location.pathname]||"Dashboard"}/>
+            <div className="flex flex-1 overflow-hidden">
+                <SideNavBar/>
+                <Routes>
+                    <Route path="/" element={<ExecutiveDashboard/>}/>
+                    <Route path="/intelligence" element={<HotspotIntelligence/>}/>
+                    <Route path="/operations" element={<OperationsCenter/>}/>
+                    <Route path="/analytics" element={<AnalyticsDashboard/>}/>
+                    <Route path="/vehicle-intel" element={<VehicleIntel/>}/>
+                    <Route path="/planning" element={<PatrolPlanner/>}/>
+                    <Route path="/simulator" element={<Simulator/>}/>
+                </Routes>
+            </div>
+        </div>
+    );
+};
+
+createRoot(document.getElementById("root")).render(<MemoryRouter><App/></MemoryRouter>);
+</script>
+</body>
+</html>

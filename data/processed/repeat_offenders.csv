@@ -1,0 +1,288 @@
+vehicle_number,total_violations,distinct_hotspot_count,hotspot_names,police_stations,first_violation_date,last_violation_date,active_span_days,peak_hour_violations,large_vehicle,top_violation_type,offender_score_raw,offender_score
+FKN00GL9771,34,2,BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction,Upparpet,2023-11-09,2024-04-04,147,24,False,NO PARKING,53.8887,100.0
+FKN00GL17863,33,2,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-11-13,2024-03-08,116,2,False,NO PARKING,52.3038,96.15
+FKN00GL2906,26,3,"BTP018 - Dhobi Ghat Junction | BTP170 - Dr. Bheem Rao Palace, Chord Road",Rajajinagar | Vijayanagara,2023-12-02,2024-03-27,116,1,False,WRONG PARKING,52.0,95.42
+FKN00GL9182,20,4,BTP027 - Modi Bridge Junction | BTP205 - Modi Hospital Junction,Rajajinagar | Vijayanagara,2023-11-17,2024-03-10,114,0,False,NO PARKING,46.4386,81.92
+FKN00GL15265,28,2,BTP040 - Elite Junction | BTP045 - Danvanthri Road Junction,Upparpet,2023-11-12,2024-04-04,144,0,False,NO PARKING,44.379,76.92
+FKN00GL7916,20,3,BTP038 - Mysore Bank Junction | BTP044 - Sagar Theatre Junction,City Market | Upparpet,2023-11-11,2024-04-07,148,3,False,NO PARKING,40.0,66.3
+FKN00GL104980,20,3,BTP042 - Minsk Square Junction (CTO) | BTP173 - TMC,Cubbon Park | Shivajinagar,2023-11-14,2024-01-08,55,0,False,NO PARKING,40.0,66.3
+FKN00GL1118,25,2,"BTP026 - 1st Block Junction, Rajajinagar | BTP182 - 19th Main Junction, Rajajinagar",Malleshwaram,2023-11-19,2024-03-29,131,0,False,NO PARKING,39.6241,65.38
+FKN00GL1243,19,3,"BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road | BTP170 - Dr. Bheem Rao Palace, Chord Road | BTP204 - ESI Hospital, Rajajinagar",Rajajinagar,2023-12-14,2024-04-07,115,1,False,WRONG PARKING,38.0,61.44
+FKN00GL16746,16,4,[Unknown]:Electronic City | [Unknown]:HSR Layout | [Unknown]:Hulimavu | [Unknown]:Madiwala,Electronic City | HSR Layout | Hulimavu | Madiwala,2023-12-02,2024-03-04,93,5,True,WRONG PARKING,37.1508,59.38
+FKN00GL1175,23,2,BTP058 - Subbanna Junction | [Unknown]:Upparpet,Upparpet,2023-11-10,2024-04-06,148,5,False,NO PARKING,36.4541,57.69
+FKN00GL8361,23,2,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-12-03,2024-03-25,113,1,False,NO PARKING,36.4541,57.69
+FKN00GL17388,18,3,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road | BTP051 - Safina Plaza Junction",High ground | Shivajinagar,2023-11-14,2024-01-20,67,1,False,WRONG PARKING,36.0,56.59
+FKN00GL23079,18,3,"BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road | BTP170 - Dr. Bheem Rao Palace, Chord Road | BTP204 - ESI Hospital, Rajajinagar",Rajajinagar,2023-11-10,2024-04-03,145,1,False,WRONG PARKING,36.0,56.59
+FKN00GL7963,22,2,[Unknown]:Kodigehalli | [Unknown]:Yelahanka,Kodigehalli | Yelahanka,2023-12-16,2024-03-22,97,1,False,WRONG PARKING,34.8692,53.85
+FKN00GL25480,22,2,BTP040 - Elite Junction | BTP058 - Subbanna Junction,Upparpet,2023-11-15,2024-04-06,143,10,False,NO PARKING,34.8692,53.85
+FKN00GL14755,15,4,"BTP113 - 27th Cross, Pai Vista, KR Road | BTP115 - Sahasra Hospital, Jayanagar",Banashankari | Jayanagara | K.S. Layout,2023-12-01,2024-04-01,122,0,False,NO PARKING,34.8289,53.75
+FKN00GL7910,21,2,BTP044 - Sagar Theatre Junction,City Market | Upparpet,2023-11-12,2024-03-11,120,0,False,NO PARKING,33.2842,50.0
+FKN00GL9334,21,2,BTP042 - Minsk Square Junction (CTO) | BTP173 - TMC,Shivajinagar,2023-11-21,2024-03-27,127,0,False,NO PARKING,33.2842,50.0
+FKN00GL18794,21,2,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-11-12,2024-03-29,138,6,False,NO PARKING,33.2842,50.0
+FKN00GL6219,16,3,"BTP023 - Mahalaxmi Layout Entrance | BTP070 - Cholurpalya Junction, Magadi Road",Magadi Road | Malleshwaram | Rajajinagar,2023-12-03,2024-03-31,119,0,False,WRONG PARKING,32.0,46.88
+FKN00GL6353,20,2,BTP042 - Minsk Square Junction (CTO),Cubbon Park | Shivajinagar,2023-11-14,2024-04-06,144,0,False,NO PARKING,31.6993,46.15
+FKN00GL13920,20,2,BTP051 - Safina Plaza Junction | BTP082 - KR Market Junction,Halasuru Gate | Shivajinagar,2023-11-11,2024-03-18,128,5,False,WRONG PARKING,31.6993,46.15
+FKN00GL24261,19,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-13,2024-04-01,140,0,False,NO PARKING,30.1143,42.31
+FKN00GL2996,15,3,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road | BTP058 - Subbanna Junction",High ground | Upparpet,2023-11-21,2024-04-02,133,5,False,WRONG PARKING,30.0,42.03
+FKN00GL6780,15,3,"BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road | BTP170 - Dr. Bheem Rao Palace, Chord Road | BTP182 - 19th Main Junction, Rajajinagar",Malleshwaram | Rajajinagar,2023-12-11,2024-03-05,85,0,False,NO PARKING,30.0,42.03
+FKN00GL41563,15,3,"BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road | BTP170 - Dr. Bheem Rao Palace, Chord Road | BTP204 - ESI Hospital, Rajajinagar",Rajajinagar,2023-11-18,2024-04-03,137,1,True,WRONG PARKING,30.0,42.03
+FKN00GL9606,15,3,"BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road | BTP170 - Dr. Bheem Rao Palace, Chord Road | BTP204 - ESI Hospital, Rajajinagar",Rajajinagar,2023-11-10,2024-04-07,149,3,True,WRONG PARKING,30.0,42.03
+FKN00GL7612,18,2,[Unknown]:Electronic City | [Unknown]:Hulimavu,Electronic City | Hulimavu,2023-12-27,2024-04-07,102,4,False,WRONG PARKING,28.5293,38.46
+FKN00GL9852,18,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-11,2024-03-30,140,4,False,WRONG PARKING,28.5293,38.46
+FKN00GL20898,18,2,BTP040 - Elite Junction | BTP043 - Upparpet Junction,Upparpet,2023-11-16,2024-03-23,128,3,False,WRONG PARKING,28.5293,38.46
+FKN00GL6652,14,3,"BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road | BTP170 - Dr. Bheem Rao Palace, Chord Road | BTP204 - ESI Hospital, Rajajinagar",Rajajinagar,2024-01-10,2024-04-03,84,3,True,WRONG PARKING,28.0,37.18
+FKN00GL18450,14,3,BTP027 - Modi Bridge Junction | BTP205 - Modi Hospital Junction,Rajajinagar | Vijayanagara,2023-11-15,2024-02-14,91,0,False,NO PARKING,28.0,37.18
+FKN00GL5280,14,3,"BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road | BTP170 - Dr. Bheem Rao Palace, Chord Road | BTP204 - ESI Hospital, Rajajinagar",Rajajinagar,2023-11-10,2024-04-03,145,2,False,WRONG PARKING,28.0,37.18
+FKN00GL1473,12,4,"BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road | BTP018 - Dhobi Ghat Junction | BTP170 - Dr. Bheem Rao Palace, Chord Road",Rajajinagar | Vijayanagara,2023-11-28,2024-03-27,120,1,True,WRONG PARKING,27.8631,36.84
+FKN00GL16020,12,4,BTP038 - Mysore Bank Junction | BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction | [Unknown]:Upparpet,Upparpet,2023-12-11,2024-04-06,117,5,True,WRONG PARKING,27.8631,36.84
+FKN00GL44955,9,7,BTP051 - Safina Plaza Junction | BTP057 - Anand Rao Junction | BTP121 - KH Circle | [Unknown]:Bellandur | [Unknown]:Chikkajala | [Unknown]:Mahadevapura,Bellandur | Chikkajala | High ground | Mahadevapura | Shivajinagar | Upparpet | Wilson Garden,2023-11-15,2024-03-07,113,1,True,NO PARKING,27.0,34.75
+FKN00GL5111,17,2,BTP008 - Navarang Theatre,Malleshwaram | Rajajinagar,2023-11-09,2024-04-05,148,1,False,WRONG PARKING,26.9444,34.62
+FKN00GL22956,17,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-15,2024-02-06,83,6,False,WRONG PARKING,26.9444,34.62
+FKN00GL41594,13,3,[Unknown]:Electronic City | [Unknown]:HSR Layout | [Unknown]:Hulimavu,Electronic City | HSR Layout | Hulimavu,2023-11-12,2024-04-07,147,9,True,WRONG PARKING,26.0,32.32
+FKN00GL21231,11,4,BTP038 - Mysore Bank Junction | BTP044 - Sagar Theatre Junction | BTP192 - Urvashi Theater | [Unknown]:Jnanabharathi,Jnanabharathi | Upparpet | Wilson Garden,2023-12-03,2024-03-27,115,5,True,NO PARKING,25.5412,31.21
+FKN00GL61150,11,4,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction | BTP045 - Danvanthri Road Junction,City Market | Upparpet,2023-12-14,2024-04-06,114,0,False,NO PARKING,25.5412,31.21
+FKN00GL4107,16,2,[Unknown]:Malleshwaram | [Unknown]:Rajajinagar,Malleshwaram | Rajajinagar,2023-11-28,2024-02-27,91,1,False,WRONG PARKING,25.3594,30.77
+FKN00GL6946,16,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-14,2024-02-06,84,0,False,WRONG PARKING,25.3594,30.77
+FKN00GL7952,16,2,[Unknown]:Electronic City | [Unknown]:Hulimavu,Electronic City | Hulimavu,2024-02-14,2024-04-07,53,2,True,WRONG PARKING,25.3594,30.77
+FKN00GL10449,16,2,BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction,Upparpet,2023-12-07,2024-03-11,95,11,False,NO PARKING,25.3594,30.77
+FKN00GL12732,16,2,BTP051 - Safina Plaza Junction,Cubbon Park | Shivajinagar,2023-11-12,2024-02-18,98,1,False,NO PARKING,25.3594,30.77
+FKN00GL19014,16,2,BTP058 - Subbanna Junction | [Unknown]:Upparpet,Upparpet,2023-11-10,2024-04-06,148,5,False,NO PARKING,25.3594,30.77
+FKN00GL40079,16,2,[Unknown]:Hebbala | [Unknown]:Kodigehalli,Hebbala | Kodigehalli,2023-11-11,2024-03-23,133,2,False,NO PARKING,25.3594,30.77
+FKN00GL1530,12,3,BTP032 - Windsor Circle | [Unknown]:Malleshwaram,High ground | Malleshwaram | Sheshadripuram,2023-11-30,2024-03-23,114,0,False,NO PARKING,24.0,27.47
+FKN00GL2891,12,3,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,City Market | Upparpet,2023-11-15,2024-02-15,92,0,False,WRONG PARKING,24.0,27.47
+FKN00GL3018,12,3,BTP020 - Hosahalli Metro Station | BTP068 - Veeresh Theatre Junction | BTP096 - Gali Anjaneya Temple,Byatarayanapura | Vijayanagara,2023-11-28,2024-02-02,66,0,False,WRONG PARKING,24.0,27.47
+FKN00GL11030,12,3,BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction | [Unknown]:Upparpet,Upparpet,2023-11-15,2024-04-04,141,6,True,WRONG PARKING,24.0,27.47
+FKN00GL73104,12,3,BTP040 - Elite Junction | BTP057 - Anand Rao Junction | BTP058 - Subbanna Junction,Upparpet,2023-11-17,2024-03-02,106,9,False,WRONG PARKING,24.0,27.47
+FKN00GL76754,12,3,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road | BTP054 - Shivananda Circle",High ground | Sheshadripuram,2023-11-14,2024-03-05,112,2,False,WRONG PARKING,24.0,27.47
+FKN00GL0397,15,2,BTP044 - Sagar Theatre Junction,City Market | Upparpet,2023-11-12,2024-04-07,147,0,False,NO PARKING,23.7744,26.92
+FKN00GL2687,15,2,BTP023 - Mahalaxmi Layout Entrance | [Unknown]:Rajajinagar,Rajajinagar,2023-11-14,2024-04-06,144,0,False,WRONG PARKING,23.7744,26.92
+FKN00GL3743,15,2,BTP051 - Safina Plaza Junction | BTP211 - Central Street Junction,Shivajinagar,2023-12-19,2024-03-31,103,2,False,WRONG PARKING,23.7744,26.92
+FKN00GL4759,15,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-20,2024-04-04,136,2,False,WRONG PARKING,23.7744,26.92
+FKN00GL5016,15,2,[Unknown]:Sadashivanagar | [Unknown]:Sheshadripuram,Sadashivanagar | Sheshadripuram,2023-11-18,2024-03-29,132,0,False,NO PARKING,23.7744,26.92
+FKN00GL9990,15,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-14,2024-02-08,86,3,False,WRONG PARKING,23.7744,26.92
+FKN00GL19786,15,2,BTP040 - Elite Junction | [Unknown]:Malleshwaram,Malleshwaram | Upparpet,2023-12-08,2024-04-05,119,4,False,WRONG PARKING,23.7744,26.92
+FKN00GL21720,15,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-24,2024-04-04,132,4,False,WRONG PARKING,23.7744,26.92
+FKN00GL22258,15,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-19,2024-03-30,132,2,False,NO PARKING,23.7744,26.92
+FKN00GL51416,15,2,BTP040 - Elite Junction | BTP058 - Subbanna Junction,Upparpet,2023-12-22,2024-04-06,106,4,False,NO PARKING,23.7744,26.92
+FKN00GL13448,10,4,"BTP082 - KR Market Junction | BTP083 - AS Char Street, Mysore Road",City Market | V.V.Puram (C.Pet),2023-11-21,2024-03-27,127,9,False,WRONG PARKING,23.2193,25.58
+FKN00GL27389,10,4,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction | [Unknown]:Malleshwaram,Malleshwaram | Upparpet,2023-12-27,2024-04-04,99,7,False,NO PARKING,23.2193,25.58
+FKN00GL28774,10,4,BTP023 - Mahalaxmi Layout Entrance | [Unknown]:Malleshwaram | [Unknown]:Rajajinagar,Malleshwaram | Rajajinagar,2023-11-15,2024-02-23,100,0,False,WRONG PARKING,23.2193,25.58
+FKN00GL1301,14,2,BTP020 - Hosahalli Metro Station | BTP068 - Veeresh Theatre Junction,Vijayanagara,2023-11-30,2024-04-01,123,1,False,NO PARKING,22.1895,23.08
+FKN00GL3173,14,2,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-11-28,2024-03-30,123,0,False,NO PARKING,22.1895,23.08
+FKN00GL6423,14,2,[Unknown]:Kodigehalli | [Unknown]:Malleshwaram,Kodigehalli | Malleshwaram,2023-12-25,2024-02-07,44,0,False,WRONG PARKING,22.1895,23.08
+FKN00GL7760,14,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-11,2024-04-01,142,4,False,WRONG PARKING,22.1895,23.08
+FKN00GL18309,14,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2024-01-10,2024-04-02,83,3,False,NO PARKING,22.1895,23.08
+FKN00GL19727,14,2,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-12-07,2024-04-03,118,0,False,NO PARKING,22.1895,23.08
+FKN00GL25145,14,2,BTP211 - Central Street Junction,Cubbon Park | Shivajinagar,2023-11-13,2024-04-01,140,0,False,WRONG PARKING,22.1895,23.08
+FKN00GL25402,14,2,BTP051 - Safina Plaza Junction | BTP211 - Central Street Junction,Shivajinagar,2023-11-16,2024-04-08,144,1,False,WRONG PARKING,22.1895,23.08
+FKN00GL31294,14,2,[Unknown]:Kodigehalli | [Unknown]:Yelahanka,Kodigehalli | Yelahanka,2023-12-31,2024-03-23,83,0,False,WRONG PARKING,22.1895,23.08
+FKN00GL60534,14,2,BTP038 - Mysore Bank Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-11-11,2024-04-06,147,0,False,NO PARKING,22.1895,23.08
+FKN00GL0147,11,3,"BTP083 - AS Char Street, Mysore Road | BTP104 - Medical College Circle | BTP118 - Basappa Circle",Chamarajpet | City Market,2023-11-15,2024-04-02,139,0,True,WRONG PARKING,22.0,22.62
+FKN00GL0330,11,3,BTP008 - Navarang Theatre | BTP027 - Modi Bridge Junction,Malleshwaram | Rajajinagar | Vijayanagara,2023-11-17,2024-03-29,133,1,False,WRONG PARKING,22.0,22.62
+FKN00GL23020,11,3,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road | [Unknown]:High ground",High ground,2023-11-21,2024-02-06,77,1,False,WRONG PARKING,22.0,22.62
+FKN00GL26002,11,3,"BTP082 - KR Market Junction | BTP083 - AS Char Street, Mysore Road",City Market | V.V.Puram (C.Pet),2023-11-21,2024-03-16,116,11,False,WRONG PARKING,22.0,22.62
+FKN00GL62335,11,3,"BTP001 - 10th Cross, Dr. Rajkumar Road | BTP061 - Bhashyam Circle | [Unknown]:Malleshwaram",Malleshwaram | Rajajinagar,2023-11-22,2024-04-05,135,0,False,NO PARKING,22.0,22.62
+FKN00GL8131,9,4,"BTP018 - Dhobi Ghat Junction | BTP040 - Elite Junction | BTP170 - Dr. Bheem Rao Palace, Chord Road",Rajajinagar | Upparpet | Vijayanagara,2023-12-03,2024-02-10,69,1,True,WRONG PARKING,20.8974,19.94
+FKN00GL10551,9,4,BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction | [Unknown]:Hebbala | [Unknown]:Kodigehalli,Hebbala | Kodigehalli | Upparpet,2024-01-10,2024-03-15,65,0,False,NO PARKING,20.8974,19.94
+FKN00GL15108,9,4,BTP043 - Upparpet Junction | BTP044 - Sagar Theatre Junction | BTP082 - KR Market Junction | [Unknown]:City Market,City Market,2023-11-17,2024-04-02,137,0,False,WRONG PARKING,20.8974,19.94
+FKN00GL2378,13,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-14,2024-02-08,86,0,False,WRONG PARKING,20.6045,19.23
+FKN00GL7134,13,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-23,2024-04-04,133,1,False,WRONG PARKING,20.6045,19.23
+FKN00GL8164,13,2,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,Upparpet,2024-02-03,2024-04-04,61,0,False,NO PARKING,20.6045,19.23
+FKN00GL8211,13,2,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-11-10,2024-02-28,110,0,False,NO PARKING,20.6045,19.23
+FKN00GL15299,13,2,BTP044 - Sagar Theatre Junction | [Unknown]:Hebbala,Hebbala | Upparpet,2024-01-23,2024-03-04,41,0,False,NO PARKING,20.6045,19.23
+FKN00GL44125,13,2,BTP038 - Mysore Bank Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-11-16,2024-04-03,139,0,False,NO PARKING,20.6045,19.23
+FKN00GL1115,10,3,"BTP026 - 1st Block Junction, Rajajinagar | BTP182 - 19th Main Junction, Rajajinagar | BTP192 - Urvashi Theater",Malleshwaram | Wilson Garden,2024-02-26,2024-04-07,41,0,False,WRONG PARKING,20.0,17.76
+FKN00GL6945,10,3,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road | BTP063 - Siddalingaiah Circle",Cubbon Park | High ground,2023-11-14,2024-02-02,80,0,False,WRONG PARKING,20.0,17.76
+FKN00GL8445,10,3,"BTP008 - Navarang Theatre | BTP182 - 19th Main Junction, Rajajinagar",Malleshwaram | Rajajinagar,2023-11-17,2024-04-04,139,0,False,WRONG PARKING,20.0,17.76
+FKN00GL11796,10,3,BTP048 - Shanthala Junction | BTP051 - Safina Plaza Junction | BTP082 - KR Market Junction,Chamarajpet | City Market | Shivajinagar,2023-12-28,2024-03-17,80,2,False,WRONG PARKING,20.0,17.76
+FKN00GL13278,10,3,BTP208 - Havanur Circle,Kamakshipalya | Magadi Road | Vijayanagara,2023-11-15,2024-04-08,145,1,False,WRONG PARKING,20.0,17.76
+FKN00GL14087,10,3,BTP100 - Richmond Circle | BTP172 - Nanjappa Circle | [Unknown]:Ashok Nagar,Ashok Nagar,2023-11-16,2024-03-04,109,1,False,NO PARKING,20.0,17.76
+FKN00GL21328,10,3,BTP027 - Modi Bridge Junction | BTP205 - Modi Hospital Junction | [Unknown]:Malleshwaram,Malleshwaram | Vijayanagara,2023-11-17,2024-02-20,95,0,False,WRONG PARKING,20.0,17.76
+FKN00GL28770,10,3,BTP023 - Mahalaxmi Layout Entrance | [Unknown]:Rajajinagar,Malleshwaram | Rajajinagar,2023-11-15,2024-02-25,102,0,False,WRONG PARKING,20.0,17.76
+FKN00GL52826,10,3,[Unknown]:Hebbala | [Unknown]:Kodigehalli | [Unknown]:R.T. Nagar,Hebbala | Kodigehalli | R.T. Nagar,2023-12-20,2024-03-30,101,1,False,NO PARKING,20.0,17.76
+FKN00GL62141,10,3,"BTP082 - KR Market Junction | BTP083 - AS Char Street, Mysore Road",City Market | V.V.Puram (C.Pet),2023-11-22,2024-04-06,136,10,False,WRONG PARKING,20.0,17.76
+FKN00GL103735,10,3,"BTP018 - Dhobi Ghat Junction | BTP170 - Dr. Bheem Rao Palace, Chord Road",Rajajinagar | Vijayanagara,2023-11-28,2023-12-25,27,1,False,WRONG PARKING,20.0,17.76
+FKN00GL1620,12,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2024-01-18,2024-04-07,80,0,False,WRONG PARKING,19.0196,15.38
+FKN00GL4734,12,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-15,2024-03-27,133,0,False,WRONG PARKING,19.0196,15.38
+FKN00GL6480,12,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-15,2024-03-27,133,0,False,NO PARKING,19.0196,15.38
+FKN00GL7362,12,2,[Unknown]:Bellandur | [Unknown]:HAL Old Airport,Bellandur | HAL Old Airport,2024-01-04,2024-02-22,49,0,True,WRONG PARKING,19.0196,15.38
+FKN00GL8857,12,2,BTP027 - Modi Bridge Junction,Malleshwaram | Rajajinagar,2023-11-18,2024-04-05,139,0,False,WRONG PARKING,19.0196,15.38
+FKN00GL10599,12,2,BTP038 - Mysore Bank Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-12-11,2024-03-22,102,4,True,WRONG PARKING,19.0196,15.38
+FKN00GL20386,12,2,[Unknown]:Banaswadi | [Unknown]:HAL Old Airport,Banaswadi | HAL Old Airport,2024-02-05,2024-02-07,2,10,False,WRONG PARKING,19.0196,15.38
+FKN00GL23215,12,2,BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction,Upparpet,2023-11-14,2024-03-11,118,1,False,NO PARKING,19.0196,15.38
+FKN00GL24230,12,2,[Unknown]:HAL Old Airport | [Unknown]:Sheshadripuram,HAL Old Airport | Sheshadripuram,2024-01-31,2024-02-22,22,0,False,WRONG PARKING,19.0196,15.38
+FKN00GL30840,12,2,BTP051 - Safina Plaza Junction | BTP211 - Central Street Junction,Shivajinagar,2023-11-15,2024-02-10,87,1,False,NO PARKING,19.0196,15.38
+FKN00GL36034,12,2,[Unknown]:Hebbala | [Unknown]:Kodigehalli,Hebbala | Kodigehalli,2024-02-13,2024-02-23,10,0,False,NO PARKING,19.0196,15.38
+FKN00GL3284,12,2,BTP038 - Mysore Bank Junction | BTP051 - Safina Plaza Junction,Shivajinagar | Upparpet,2023-11-11,2024-03-17,127,0,False,NO PARKING,19.0196,15.38
+FKN00GL43944,12,2,[Unknown]:Hebbala | [Unknown]:Kodigehalli,Hebbala | Kodigehalli,2023-12-02,2024-03-16,105,1,False,NO PARKING,19.0196,15.38
+FKN00GL44458,12,2,BTP027 - Modi Bridge Junction | BTP205 - Modi Hospital Junction,Vijayanagara,2023-11-29,2024-03-30,122,1,False,NO PARKING,19.0196,15.38
+FKN00GL48931,12,2,BTP038 - Mysore Bank Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-12-12,2024-04-06,116,0,False,NO PARKING,19.0196,15.38
+FKN00GL16589,12,2,[Unknown]:Banaswadi | [Unknown]:Jeevanbheemanagar,Banaswadi | Jeevanbheemanagar,2023-12-07,2024-03-18,102,1,False,NO PARKING,19.0196,15.38
+FKN00GL4519,8,4,BTP038 - Mysore Bank Junction | BTP044 - Sagar Theatre Junction | BTP057 - Anand Rao Junction | BTP058 - Subbanna Junction,Halasuru Gate | Upparpet,2023-11-22,2024-04-07,137,3,False,WRONG PARKING,18.5754,14.31
+FKN00GL12318,8,4,BTP044 - Sagar Theatre Junction | [Unknown]:Chikkajala | [Unknown]:HAL Old Airport | [Unknown]:Hebbala,Chikkajala | HAL Old Airport | Hebbala | Upparpet,2023-11-12,2024-03-21,130,2,True,NO PARKING,18.5754,14.31
+FKN00GL30470,8,4,BTP051 - Safina Plaza Junction | BTP211 - Central Street Junction | [Unknown]:Halasur | [Unknown]:Jeevanbheemanagar,Halasur | Jeevanbheemanagar | Shivajinagar,2023-11-15,2024-03-21,127,0,False,NO PARKING,18.5754,14.31
+FKN00GL41714,8,4,BTP045 - Danvanthri Road Junction | BTP057 - Anand Rao Junction | [Unknown]:Mahadevapura | [Unknown]:Rajajinagar,Mahadevapura | Rajajinagar | Upparpet,2023-11-15,2024-04-02,139,4,True,WRONG PARKING,18.5754,14.31
+FKN00GL78369,8,4,BTP043 - Upparpet Junction | BTP044 - Sagar Theatre Junction | [Unknown]:City Market,City Market | Upparpet,2023-11-19,2024-03-06,108,0,False,NO PARKING,18.5754,14.31
+FKN00GL103618,8,4,BTP040 - Elite Junction | BTP045 - Danvanthri Road Junction | BTP048 - Shanthala Junction | BTP057 - Anand Rao Junction,Chamarajpet | Upparpet,2023-11-10,2023-12-12,32,1,False,NO PARKING,18.5754,14.31
+FKN00GL1887,9,3,BTP063 - Siddalingaiah Circle | [Unknown]:Ashok Nagar | [Unknown]:Cubbon Park,Ashok Nagar | Cubbon Park,2023-11-20,2024-02-20,92,0,False,NO PARKING,18.0,12.91
+FKN00GL6235,9,3,BTP040 - Elite Junction | BTP045 - Danvanthri Road Junction | BTP057 - Anand Rao Junction,Upparpet,2023-11-11,2024-03-07,117,2,True,NO PARKING,18.0,12.91
+FKN00GL11641,9,3,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road | [Unknown]:High ground",High ground,2023-11-21,2024-01-24,64,2,False,WRONG PARKING,18.0,12.91
+FKN00GL15622,9,3,"BTP082 - KR Market Junction | BTP083 - AS Char Street, Mysore Road | BTP094 - Sri Skanda Complex, Mysore Road",Byatarayanapura | City Market,2023-12-28,2024-04-04,98,5,False,WRONG PARKING,18.0,12.91
+FKN00GL31710,9,3,[Unknown]:Electronic City | [Unknown]:HSR Layout | [Unknown]:Hulimavu,Electronic City | HSR Layout | Hulimavu,2023-12-02,2024-04-04,124,7,True,WRONG PARKING,18.0,12.91
+FKN00GL35707,9,3,"BTP001 - 10th Cross, Dr. Rajkumar Road | [Unknown]:Kodigehalli | [Unknown]:Malleshwaram",Kodigehalli | Malleshwaram,2023-11-22,2024-03-17,116,0,False,WRONG PARKING,18.0,12.91
+FKN00GL45904,9,3,"BTP008 - Navarang Theatre | BTP182 - 19th Main Junction, Rajajinagar",Malleshwaram | Rajajinagar,2023-11-20,2024-04-03,135,0,False,WRONG PARKING,18.0,12.91
+FKN00GL61648,9,3,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction,Upparpet,2023-12-30,2024-03-13,74,3,False,NO PARKING,18.0,12.91
+FKN00GL134975,9,3,BTP027 - Modi Bridge Junction | BTP040 - Elite Junction | BTP045 - Danvanthri Road Junction,Upparpet | Vijayanagara,2023-11-15,2024-01-06,52,1,False,NO PARKING,18.0,12.91
+FKN00GL149326,9,3,[Unknown]:HAL Old Airport | [Unknown]:Malleshwaram | [Unknown]:Whitefield,HAL Old Airport | Malleshwaram | Whitefield,2023-11-27,2024-03-10,104,0,True,WRONG PARKING,18.0,12.91
+FKN00GL3083,11,2,BTP032 - Windsor Circle | [Unknown]:Shivajinagar,High ground | Shivajinagar,2023-12-19,2024-03-13,85,0,False,WRONG PARKING,17.4346,11.54
+FKN00GL4516,11,2,BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction,Upparpet,2023-12-07,2024-04-04,119,7,True,WRONG PARKING,17.4346,11.54
+FKN00GL5790,11,2,[Unknown]:Electronic City | [Unknown]:Hulimavu,Electronic City | Hulimavu,2024-02-24,2024-04-07,43,1,True,WRONG PARKING,17.4346,11.54
+FKN00GL6530,11,2,BTP023 - Mahalaxmi Layout Entrance | [Unknown]:Rajajinagar,Rajajinagar,2023-12-27,2024-03-16,80,0,False,WRONG PARKING,17.4346,11.54
+FKN00GL7697,11,2,BTP042 - Minsk Square Junction (CTO),Cubbon Park | Shivajinagar,2023-11-17,2024-03-07,111,0,False,WRONG PARKING,17.4346,11.54
+FKN00GL11617,11,2,BTP032 - Windsor Circle | [Unknown]:High ground,High ground,2023-11-17,2024-02-01,76,0,False,WRONG PARKING,17.4346,11.54
+FKN00GL22726,11,2,BTP042 - Minsk Square Junction (CTO),Cubbon Park | Shivajinagar,2023-11-16,2024-03-07,112,0,False,WRONG PARKING,17.4346,11.54
+FKN00GL27266,11,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-19,2024-03-09,111,1,False,WRONG PARKING,17.4346,11.54
+FKN00GL29737,11,2,BTP082 - KR Market Junction,City Market | V.V.Puram (C.Pet),2024-01-08,2024-04-07,90,4,False,WRONG PARKING,17.4346,11.54
+FKN00GL36086,11,2,BTP082 - KR Market Junction,City Market | V.V.Puram (C.Pet),2023-11-22,2024-03-31,130,11,False,WRONG PARKING,17.4346,11.54
+FKN00GL36866,11,2,BTP043 - Upparpet Junction | BTP064 - Devanga Hostel Junction,Halasuru Gate | Upparpet,2023-11-15,2024-02-29,106,0,False,NO PARKING,17.4346,11.54
+FKN00GL38127,11,2,BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction,Upparpet,2023-11-15,2024-04-06,143,7,False,NO PARKING,17.4346,11.54
+FKN00GL39902,11,2,"BTP188 - 27th Cross, 4th Main, Jayanagar | BTP189 - New Diagonal Road, Jayanagar",Jayanagara,2023-12-13,2024-04-05,114,0,False,NO PARKING,17.4346,11.54
+FKN00GL14734,11,2,BTP027 - Modi Bridge Junction,Malleshwaram | Rajajinagar,2023-11-17,2024-04-07,142,0,False,NO PARKING,17.4346,11.54
+FKN00GL45098,11,2,BTP051 - Safina Plaza Junction | [Unknown]:Cubbon Park,Cubbon Park | Shivajinagar,2023-11-18,2024-03-29,132,3,False,WRONG PARKING,17.4346,11.54
+FKN00GL48905,11,2,[Unknown]:Hebbala | [Unknown]:Kodigehalli,Hebbala | Kodigehalli,2023-11-26,2024-03-11,106,0,False,NO PARKING,17.4346,11.54
+FKN00GL50810,11,2,BTP082 - KR Market Junction,City Market | V.V.Puram (C.Pet),2023-12-15,2024-03-25,101,11,True,WRONG PARKING,17.4346,11.54
+FKN00GL67984,11,2,BTP032 - Windsor Circle | [Unknown]:HAL Old Airport,HAL Old Airport | High ground,2023-12-20,2024-03-01,72,0,False,WRONG PARKING,17.4346,11.54
+FKN00GL82790,11,2,[Unknown]:Electronic City | [Unknown]:Hulimavu,Electronic City | Hulimavu,2023-11-30,2024-03-26,117,0,False,WRONG PARKING,17.4346,11.54
+FKN00GL3007,8,3,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road | [Unknown]:Malleshwaram",High ground | Malleshwaram,2023-11-24,2024-02-02,70,2,False,WRONG PARKING,16.0,8.06
+FKN00GL5756,8,3,BTP020 - Hosahalli Metro Station | BTP068 - Veeresh Theatre Junction | BTP069 - MC Circle,Vijayanagara,2023-12-15,2024-03-12,88,0,False,WRONG PARKING,16.0,8.06
+FKN00GL7335,8,3,"BTP078 - NR Square Junction | BTP079 - Town Hall Junction | BTP080 - NR Road, SP Road Junction",Halasuru Gate,2023-11-21,2024-03-24,124,0,True,WRONG PARKING,16.0,8.06
+FKN00GL8473,8,3,"BTP044 - Sagar Theatre Junction | BTP083 - AS Char Street, Mysore Road | [Unknown]:Upparpet",Chamarajpet | Upparpet,2023-11-27,2024-03-31,125,0,False,NO PARKING,16.0,8.06
+FKN00GL14433,8,3,"BTP026 - 1st Block Junction, Rajajinagar | BTP027 - Modi Bridge Junction | BTP182 - 19th Main Junction, Rajajinagar",Malleshwaram,2023-12-09,2024-01-24,46,0,False,NO PARKING,16.0,8.06
+FKN00GL16075,8,3,BTP040 - Elite Junction | BTP058 - Subbanna Junction | BTP082 - KR Market Junction,City Market | Upparpet,2023-11-11,2024-03-28,138,4,True,WRONG PARKING,16.0,8.06
+FKN00GL21803,8,3,"BTP051 - Safina Plaza Junction | BTP095 - Satellite Bus Stand, Mysore Road | BTP096 - Gali Anjaneya Temple",Byatarayanapura | Shivajinagar,2023-11-11,2024-02-06,87,1,False,WRONG PARKING,16.0,8.06
+FKN00GL22703,8,3,"BTP043 - Upparpet Junction | BTP080 - NR Road, SP Road Junction | BTP083 - AS Char Street, Mysore Road",Chamarajpet | City Market,2023-12-21,2024-03-23,93,0,False,WRONG PARKING,16.0,8.06
+FKN00GL27485,8,3,"BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road | BTP038 - Mysore Bank Junction | BTP170 - Dr. Bheem Rao Palace, Chord Road",Rajajinagar | Upparpet,2023-11-10,2024-03-18,129,0,True,WRONG PARKING,16.0,8.06
+FKN00GL38123,8,3,BTP045 - Danvanthri Road Junction | BTP058 - Subbanna Junction | [Unknown]:Jeevanbheemanagar,Jeevanbheemanagar | Upparpet,2023-11-16,2024-02-28,104,8,False,NO PARKING,16.0,8.06
+FKN00GL49617,8,3,BTP082 - KR Market Junction | BTP135 - UCO Bank Junction | [Unknown]:Adugodi,Adugodi | City Market,2023-11-16,2024-02-27,103,2,False,NO PARKING,16.0,8.06
+FKN00GL54046,8,3,BTP058 - Subbanna Junction | [Unknown]:Malleshwaram | [Unknown]:Sheshadripuram,Malleshwaram | Sheshadripuram | Upparpet,2023-12-28,2024-02-28,62,1,False,WRONG PARKING,16.0,8.06
+FKN00GL56456,8,3,BTP051 - Safina Plaza Junction | BTP211 - Central Street Junction | [Unknown]:Malleshwaram,Malleshwaram | Shivajinagar,2023-11-26,2024-03-16,111,2,False,NO PARKING,16.0,8.06
+FKN00GL0476,10,2,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,Upparpet,2024-01-14,2024-03-27,73,0,False,WRONG PARKING,15.8496,7.69
+FKN00GL1901,10,2,BTP023 - Mahalaxmi Layout Entrance,Malleshwaram | Rajajinagar,2024-02-10,2024-04-03,53,0,False,WRONG PARKING,15.8496,7.69
+FKN00GL2114,10,2,[Unknown]:Malleshwaram | [Unknown]:Sheshadripuram,Malleshwaram | Sheshadripuram,2023-11-09,2024-03-15,127,1,False,WRONG PARKING,15.8496,7.69
+FKN00GL4184,10,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-11,2024-03-30,140,1,False,WRONG PARKING,15.8496,7.69
+FKN00GL5140,10,2,"BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road | BTP204 - ESI Hospital, Rajajinagar",Rajajinagar,2023-11-10,2024-04-03,145,1,True,WRONG PARKING,15.8496,7.69
+FKN00GL6089,10,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-14,2024-02-02,80,0,False,WRONG PARKING,15.8496,7.69
+FKN00GL7052,10,2,[Unknown]:Electronic City | [Unknown]:Hulimavu,Electronic City | Hulimavu,2024-02-02,2024-03-08,35,1,False,WRONG PARKING,15.8496,7.69
+FKN00GL8340,10,2,[Unknown]:Hebbala | [Unknown]:Kodigehalli,Hebbala | Kodigehalli,2023-11-28,2024-03-23,116,9,True,NO PARKING,15.8496,7.69
+FKN00GL14054,10,2,BTP100 - Richmond Circle | BTP172 - Nanjappa Circle,Ashok Nagar,2023-12-05,2024-02-29,86,0,False,NO PARKING,15.8496,7.69
+FKN00GL17572,10,2,BTP040 - Elite Junction | BTP057 - Anand Rao Junction,Upparpet,2023-12-13,2024-01-19,37,4,False,NO PARKING,15.8496,7.69
+FKN00GL19350,10,2,BTP044 - Sagar Theatre Junction,City Market | Upparpet,2023-11-21,2024-02-21,92,1,True,NO PARKING,15.8496,7.69
+FKN00GL23209,10,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-24,2024-02-08,76,4,False,WRONG PARKING,15.8496,7.69
+FKN00GL23454,10,2,[Unknown]:Bellandur | [Unknown]:K.R. Pura,Bellandur | K.R. Pura,2023-11-15,2024-02-06,83,0,True,PARKING IN A MAIN ROAD,15.8496,7.69
+FKN00GL31543,10,2,BTP008 - Navarang Theatre | BTP058 - Subbanna Junction,Malleshwaram | Upparpet,2023-11-20,2024-04-06,138,9,False,NO PARKING,15.8496,7.69
+FKN00GL32182,10,2,BTP045 - Danvanthri Road Junction | BTP057 - Anand Rao Junction,Upparpet,2023-11-13,2024-04-05,144,3,False,WRONG PARKING,15.8496,7.69
+FKN00GL34223,10,2,"BTP080 - NR Road, SP Road Junction | [Unknown]:HAL Old Airport",HAL Old Airport | Halasuru Gate,2024-02-28,2024-03-31,32,0,False,WRONG PARKING,15.8496,7.69
+FKN00GL45914,10,2,BTP040 - Elite Junction | BTP058 - Subbanna Junction,Upparpet,2023-11-28,2024-03-27,120,3,True,NO PARKING,15.8496,7.69
+FKN00GL63132,10,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-15,2024-03-01,107,1,False,NO PARKING,15.8496,7.69
+FKN00GL63934,10,2,BTP082 - KR Market Junction,City Market | V.V.Puram (C.Pet),2023-11-22,2024-03-27,126,10,False,WRONG PARKING,15.8496,7.69
+FKN00GL68222,10,2,BTP100 - Richmond Circle | BTP172 - Nanjappa Circle,Ashok Nagar,2023-11-16,2024-03-07,112,0,False,NO PARKING,15.8496,7.69
+FKN00GL75598,10,2,[Unknown]:Hebbala | [Unknown]:Kodigehalli,Hebbala | Kodigehalli,2023-11-22,2024-03-07,106,0,False,NO PARKING,15.8496,7.69
+FKN00GL102160,10,2,BTP032 - Windsor Circle | [Unknown]:High ground,High ground,2023-11-21,2024-01-19,59,0,False,WRONG PARKING,15.8496,7.69
+FKN00GL114057,10,2,"BTP001 - 10th Cross, Dr. Rajkumar Road | [Unknown]:Malleshwaram",Malleshwaram,2023-11-11,2023-12-07,26,1,False,WRONG PARKING,15.8496,7.69
+FKN00GL120338,10,2,BTP023 - Mahalaxmi Layout Entrance | [Unknown]:Rajajinagar,Rajajinagar,2023-11-11,2024-01-16,66,0,False,WRONG PARKING,15.8496,7.69
+FKN00GL0166,9,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-27,2024-02-08,73,1,False,WRONG PARKING,14.2647,3.85
+FKN00GL2865,9,2,BTP020 - Hosahalli Metro Station | BTP069 - MC Circle,Vijayanagara,2023-11-30,2024-03-15,106,0,False,WRONG PARKING,14.2647,3.85
+FKN00GL3431,9,2,[Unknown]:Banaswadi | [Unknown]:Mahadevapura,Banaswadi | Mahadevapura,2023-12-24,2024-03-28,95,4,False,NO PARKING,14.2647,3.85
+FKN00GL4743,9,2,BTP027 - Modi Bridge Junction | BTP044 - Sagar Theatre Junction,Upparpet | Vijayanagara,2023-11-10,2024-03-28,139,0,False,NO PARKING,14.2647,3.85
+FKN00GL5703,9,2,BTP020 - Hosahalli Metro Station | BTP042 - Minsk Square Junction (CTO),Shivajinagar | Vijayanagara,2023-11-22,2024-03-12,111,0,False,WRONG PARKING,14.2647,3.85
+FKN00GL6094,9,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-15,2024-02-06,83,0,False,WRONG PARKING,14.2647,3.85
+FKN00GL6558,9,2,BTP136 - Hosur-Tavarkere Road Junction | [Unknown]:Mico Layout,Mico Layout,2023-11-21,2024-02-02,73,1,False,NO PARKING,14.2647,3.85
+FKN00GL5130,9,2,[Unknown]:Banaswadi | [Unknown]:Mahadevapura,Banaswadi | Mahadevapura,2023-11-22,2024-03-28,127,0,False,PARKING IN A MAIN ROAD,14.2647,3.85
+FKN00GL7795,9,2,BTP038 - Mysore Bank Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-11-12,2024-02-03,83,0,False,NO PARKING,14.2647,3.85
+FKN00GL7970,9,2,[Unknown]:HSR Layout | [Unknown]:Hulimavu,HSR Layout | Hulimavu,2023-11-15,2024-03-28,134,1,True,WRONG PARKING,14.2647,3.85
+FKN00GL9585,9,2,[Unknown]:Hebbala | [Unknown]:Kodigehalli,Hebbala | Kodigehalli,2023-12-31,2024-03-15,75,0,False,NO PARKING,14.2647,3.85
+FKN00GL9928,9,2,BTP020 - Hosahalli Metro Station | BTP069 - MC Circle,Vijayanagara,2023-12-01,2024-03-03,93,0,False,WRONG PARKING,14.2647,3.85
+FKN00GL11456,9,2,BTP040 - Elite Junction | BTP045 - Danvanthri Road Junction,Upparpet,2023-11-15,2024-03-25,131,1,False,NO PARKING,14.2647,3.85
+FKN00GL11444,9,2,BTP051 - Safina Plaza Junction | [Unknown]:Malleshwaram,Malleshwaram | Shivajinagar,2023-11-18,2024-02-06,80,1,False,NO PARKING,14.2647,3.85
+FKN00GL17389,9,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-21,2024-01-12,52,2,False,WRONG PARKING,14.2647,3.85
+FKN00GL17742,9,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-20,2024-02-27,99,0,False,WRONG PARKING,14.2647,3.85
+FKN00GL19099,9,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-14,2024-01-29,76,0,False,WRONG PARKING,14.2647,3.85
+FKN00GL19244,9,2,[Unknown]:Malleshwaram | [Unknown]:Rajajinagar,Malleshwaram | Rajajinagar,2023-11-28,2024-04-06,130,1,False,NO PARKING,14.2647,3.85
+FKN00GL19672,9,2,BTP082 - KR Market Junction | [Unknown]:HAL Old Airport,City Market | HAL Old Airport,2023-11-15,2024-03-12,118,0,False,NO PARKING,14.2647,3.85
+FKN00GL20384,9,2,[Unknown]:Banaswadi | [Unknown]:Chikkajala,Banaswadi | Chikkajala,2024-01-22,2024-02-05,14,8,False,WRONG PARKING,14.2647,3.85
+FKN00GL21998,9,2,BTP020 - Hosahalli Metro Station | BTP069 - MC Circle,Vijayanagara,2023-12-01,2024-03-28,118,0,False,NO PARKING,14.2647,3.85
+FKN00GL17033,9,2,"BTP023 - Mahalaxmi Layout Entrance | BTP026 - 1st Block Junction, Rajajinagar",Malleshwaram,2023-11-14,2024-03-30,137,0,False,WRONG PARKING,14.2647,3.85
+FKN00GL15781,9,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-12-31,2024-03-30,90,1,False,WRONG PARKING,14.2647,3.85
+FKN00GL45736,9,2,BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction,Upparpet,2023-11-28,2024-03-05,98,9,False,NO PARKING,14.2647,3.85
+FKN00GL47375,9,2,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-11-12,2024-03-23,132,0,False,NO PARKING,14.2647,3.85
+FKN00GL48126,9,2,BTP027 - Modi Bridge Junction,Rajajinagar | Vijayanagara,2023-12-14,2024-03-24,101,1,False,WRONG PARKING,14.2647,3.85
+FKN00GL49345,9,2,[Unknown]:Hebbala | [Unknown]:Kodigehalli,Hebbala | Kodigehalli,2023-12-06,2024-02-20,76,0,False,NO PARKING,14.2647,3.85
+FKN00GL52216,9,2,[Unknown]:Hebbala | [Unknown]:Kodigehalli,Hebbala | Kodigehalli,2024-03-07,2024-04-08,32,0,False,NO PARKING,14.2647,3.85
+FKN00GL52584,9,2,[Unknown]:Kodigehalli | [Unknown]:Yelahanka,Kodigehalli | Yelahanka,2023-11-16,2024-02-25,101,0,False,WRONG PARKING,14.2647,3.85
+FKN00GL53598,9,2,[Unknown]:Electronic City | [Unknown]:Hulimavu,Electronic City | Hulimavu,2024-02-21,2024-03-08,16,2,False,WRONG PARKING,14.2647,3.85
+FKN00GL53950,9,2,BTP027 - Modi Bridge Junction,Malleshwaram | Rajajinagar,2024-03-02,2024-04-07,36,0,False,NO PARKING,14.2647,3.85
+FKN00GL57654,9,2,BTP042 - Minsk Square Junction (CTO),Cubbon Park | Shivajinagar,2023-11-17,2024-03-14,118,0,False,NO PARKING,14.2647,3.85
+FKN00GL58637,9,2,BTP040 - Elite Junction | BTP058 - Subbanna Junction,Upparpet,2024-02-27,2024-03-26,28,8,False,NO PARKING,14.2647,3.85
+FKN00GL9880,9,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-11,2024-03-03,113,2,False,NO PARKING,14.2647,3.85
+FKN00GL90621,9,2,BTP044 - Sagar Theatre Junction,City Market | Upparpet,2023-11-12,2024-02-29,109,0,False,NO PARKING,14.2647,3.85
+FKN00GL102806,9,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-14,2023-12-19,35,1,False,WRONG PARKING,14.2647,3.85
+FKN00GL111010,9,2,BTP108 - Tagore Park Junction | BTP215 - Vanivillas Junction,Basavanagudi,2023-11-16,2023-12-24,38,0,False,NO PARKING,14.2647,3.85
+FKN00GL111770,9,2,BTP027 - Modi Bridge Junction,Rajajinagar | Vijayanagara,2023-11-15,2023-12-14,29,0,False,NO PARKING,14.2647,3.85
+FKN00GL119670,9,2,BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction,Upparpet,2023-11-13,2024-01-14,62,6,False,WRONG PARKING,14.2647,3.85
+FKN00GL119791,9,2,BTP023 - Mahalaxmi Layout Entrance | [Unknown]:Rajajinagar,Rajajinagar,2023-11-11,2023-12-27,46,0,False,WRONG PARKING,14.2647,3.85
+FKN00GL130678,9,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-17,2024-01-05,49,1,False,WRONG PARKING,14.2647,3.85
+FKN00GL149662,9,2,BTP027 - Modi Bridge Junction,Malleshwaram | Rajajinagar,2023-11-29,2023-12-28,29,0,False,NO PARKING,14.2647,3.85
+FKN00GL151053,9,2,[Unknown]:Hebbala | [Unknown]:Kodigehalli,Hebbala | Kodigehalli,2023-11-15,2024-01-10,56,0,True,NO PARKING,14.2647,3.85
+FKN00GL159047,9,2,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-12-19,2024-03-25,97,1,False,NO PARKING,14.2647,3.85
+FKN00GL2335,8,2,BTP092 - Bangalore Builders Junction | BTP211 - Central Street Junction,Chamarajpet | Shivajinagar,2023-11-17,2024-04-01,136,0,False,WRONG PARKING,12.6797,0.0
+FKN00GL2615,8,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-17,2023-12-26,39,2,False,WRONG PARKING,12.6797,0.0
+FKN00GL2620,8,2,[Unknown]:Halasur | [Unknown]:Malleshwaram,Halasur | Malleshwaram,2023-12-27,2024-03-15,79,2,False,NO PARKING,12.6797,0.0
+FKN00GL3135,8,2,[Unknown]:Kodigehalli | [Unknown]:Yelahanka,Kodigehalli | Yelahanka,2023-11-28,2024-01-29,62,0,False,WRONG PARKING,12.6797,0.0
+FKN00GL3409,8,2,BTP051 - Safina Plaza Junction,Cubbon Park | Shivajinagar,2023-12-19,2024-04-01,104,2,False,NO PARKING,12.6797,0.0
+FKN00GL5841,8,2,[Unknown]:Electronic City | [Unknown]:Hulimavu,Electronic City | Hulimavu,2024-02-01,2024-03-31,59,3,True,WRONG PARKING,12.6797,0.0
+FKN00GL6315,8,2,"BTP016 - 5th Main Road, RPC Layout | [Unknown]:Magadi Road",Magadi Road | Vijayanagara,2023-11-23,2024-03-14,112,0,False,WRONG PARKING,12.6797,0.0
+FKN00GL6954,8,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-12-19,2024-03-05,77,2,False,WRONG PARKING,12.6797,0.0
+FKN00GL7596,8,2,[Unknown]:Electronic City | [Unknown]:Hulimavu,Electronic City | Hulimavu,2024-03-17,2024-03-31,14,4,False,WRONG PARKING,12.6797,0.0
+FKN00GL7730,8,2,BTP208 - Havanur Circle,Magadi Road | Vijayanagara,2024-01-10,2024-02-23,44,1,False,WRONG PARKING,12.6797,0.0
+FKN00GL8152,8,2,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,Upparpet,2024-01-06,2024-04-02,87,0,False,NO PARKING,12.6797,0.0
+FKN00GL8187,8,2,[Unknown]:HSR Layout | [Unknown]:Madiwala,HSR Layout | Madiwala,2024-01-18,2024-02-22,35,1,False,WRONG PARKING,12.6797,0.0
+FKN00GL8209,8,2,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-11-18,2024-02-03,77,0,False,NO PARKING,12.6797,0.0
+FKN00GL8392,8,2,BTP008 - Navarang Theatre,Malleshwaram | Rajajinagar,2023-11-09,2024-03-29,141,1,False,WRONG PARKING,12.6797,0.0
+FKN00GL8796,8,2,[Unknown]:Hebbala | [Unknown]:Kodigehalli,Hebbala | Kodigehalli,2023-12-22,2024-03-09,78,1,False,WRONG PARKING,12.6797,0.0
+FKN00GL9599,8,2,"BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road | BTP170 - Dr. Bheem Rao Palace, Chord Road",Rajajinagar,2024-01-31,2024-04-07,67,0,True,WRONG PARKING,12.6797,0.0
+FKN00GL10584,8,2,BTP010 - Rajajinagar Entrance | [Unknown]:Malleshwaram,Magadi Road | Malleshwaram,2023-11-11,2024-02-21,102,0,False,NO PARKING,12.6797,0.0
+FKN00GL12329,8,2,"BTP022 - Marenahalli Junction, Vijayanagar | BTP028 - Vijayanagar Bus Stand Junction",Vijayanagara,2023-12-09,2024-03-21,103,0,False,WRONG PARKING,12.6797,0.0
+FKN00GL12620,8,2,[Unknown]:Shivajinagar | [Unknown]:Yelahanka,Shivajinagar | Yelahanka,2024-02-04,2024-02-14,10,0,False,WRONG PARKING,12.6797,0.0
+FKN00GL12774,8,2,BTP042 - Minsk Square Junction (CTO) | BTP173 - TMC,Shivajinagar,2023-11-11,2024-03-29,139,0,False,WRONG PARKING,12.6797,0.0
+FKN00GL15079,8,2,BTP051 - Safina Plaza Junction | BTP211 - Central Street Junction,Shivajinagar,2023-12-14,2024-03-18,95,1,False,WRONG PARKING,12.6797,0.0
+FKN00GL15100,8,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-12-22,2024-04-04,104,0,False,WRONG PARKING,12.6797,0.0
+FKN00GL11120,8,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-12-09,2024-02-12,65,1,False,WRONG PARKING,12.6797,0.0
+FKN00GL22673,8,2,"BTP080 - NR Road, SP Road Junction | BTP082 - KR Market Junction",City Market,2023-11-15,2024-04-03,140,0,False,NO PARKING,12.6797,0.0
+FKN00GL23237,8,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-19,2024-04-04,137,1,False,NO PARKING,12.6797,0.0
+FKN00GL23238,8,2,BTP020 - Hosahalli Metro Station | BTP069 - MC Circle,Vijayanagara,2023-12-22,2024-03-28,97,0,False,NO PARKING,12.6797,0.0
+FKN00GL26701,8,2,BTP008 - Navarang Theatre,Malleshwaram | Rajajinagar,2023-12-17,2024-03-31,105,0,False,WRONG PARKING,12.6797,0.0
+FKN00GL26744,8,2,"BTP016 - 5th Main Road, RPC Layout | [Unknown]:Vijayanagara",Vijayanagara,2023-11-15,2024-02-14,91,0,False,WRONG PARKING,12.6797,0.0
+FKN00GL27726,8,2,BTP040 - Elite Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-11-16,2024-02-07,83,0,False,NO PARKING,12.6797,0.0
+FKN00GL8816,8,2,BTP051 - Safina Plaza Junction | [Unknown]:Shivajinagar,Shivajinagar,2023-11-18,2024-03-31,134,2,False,WRONG PARKING,12.6797,0.0
+FKN00GL33311,8,2,BTP051 - Safina Plaza Junction | [Unknown]:HAL Old Airport,HAL Old Airport | Shivajinagar,2023-11-15,2024-02-22,99,1,False,NO PARKING,12.6797,0.0
+FKN00GL33487,8,2,BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction,Upparpet,2024-02-11,2024-04-01,50,6,False,NO PARKING,12.6797,0.0
+FKN00GL36411,8,2,[Unknown]:Electronic City | [Unknown]:Hulimavu,Electronic City | Hulimavu,2024-02-14,2024-03-31,46,6,True,WRONG PARKING,12.6797,0.0
+FKN00GL38938,8,2,BTP044 - Sagar Theatre Junction,City Market | Upparpet,2023-11-21,2024-04-02,133,0,False,WRONG PARKING,12.6797,0.0
+FKN00GL39674,8,2,"BTP001 - 10th Cross, Dr. Rajkumar Road | [Unknown]:Malleshwaram",Malleshwaram,2023-12-02,2024-03-19,108,0,False,NO PARKING,12.6797,0.0
+FKN00GL41961,8,2,BTP108 - Tagore Park Junction | BTP215 - Vanivillas Junction,Basavanagudi,2023-12-02,2024-03-23,112,0,False,NO PARKING,12.6797,0.0
+FKN00GL46186,8,2,"BTP011 - RR Kalyana Mantapa, Dr. Rajkumar Road | BTP170 - Dr. Bheem Rao Palace, Chord Road",Rajajinagar,2023-12-10,2024-04-04,116,4,True,WRONG PARKING,12.6797,0.0
+FKN00GL65210,8,2,"BTP082 - KR Market Junction | BTP083 - AS Char Street, Mysore Road",City Market,2024-01-12,2024-03-17,65,8,True,WRONG PARKING,12.6797,0.0
+FKN00GL16636,8,2,BTP042 - Minsk Square Junction (CTO),Cubbon Park | Shivajinagar,2023-11-30,2024-03-14,105,0,True,WRONG PARKING,12.6797,0.0
+FKN00GL75561,8,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-14,2024-01-05,52,0,False,WRONG PARKING,12.6797,0.0
+FKN00GL77018,8,2,BTP038 - Mysore Bank Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-11-18,2024-03-22,125,0,False,NO PARKING,12.6797,0.0
+FKN00GL78166,8,2,"BTP032 - Windsor Circle | BTP033 - Sophia High School, Sankey Road",High ground,2023-11-14,2024-03-05,112,1,False,WRONG PARKING,12.6797,0.0
+FKN00GL80295,8,2,BTP040 - Elite Junction | [Unknown]:City Market,City Market | Upparpet,2023-11-14,2024-03-07,114,0,False,NO PARKING,12.6797,0.0
+FKN00GL94178,8,2,BTP043 - Upparpet Junction | [Unknown]:City Market,City Market,2023-12-17,2024-03-23,97,0,False,WRONG PARKING,12.6797,0.0
+FKN00GL101844,8,2,BTP042 - Minsk Square Junction (CTO) | [Unknown]:Cubbon Park,Cubbon Park | Shivajinagar,2023-11-15,2023-12-12,27,0,False,NO PARKING,12.6797,0.0
+FKN00GL107929,8,2,BTP008 - Navarang Theatre,Malleshwaram | Rajajinagar,2023-12-02,2024-03-27,116,0,False,WRONG PARKING,12.6797,0.0
+FKN00GL17422,8,2,BTP136 - Hosur-Tavarkere Road Junction | [Unknown]:Mico Layout,Mico Layout,2023-11-28,2024-01-16,49,2,False,NO PARKING,12.6797,0.0
+FKN00GL111071,8,2,[Unknown]:Banaswadi | [Unknown]:Jeevanbheemanagar,Banaswadi | Jeevanbheemanagar,2023-12-02,2024-01-05,34,1,False,NO PARKING,12.6797,0.0
+FKN00GL114087,8,2,[Unknown]:High ground | [Unknown]:Shivajinagar,High ground | Shivajinagar,2023-11-20,2023-12-14,24,1,True,WRONG PARKING,12.6797,0.0
+FKN00GL122701,8,2,BTP027 - Modi Bridge Junction,Malleshwaram | Rajajinagar,2023-11-11,2023-11-27,16,0,False,NO PARKING,12.6797,0.0
+FKN00GL124046,8,2,BTP038 - Mysore Bank Junction | BTP044 - Sagar Theatre Junction,Upparpet,2023-11-12,2023-12-31,49,0,False,NO PARKING,12.6797,0.0
+FKN00GL124679,8,2,BTP044 - Sagar Theatre Junction | BTP058 - Subbanna Junction,Upparpet,2023-11-12,2024-03-24,133,3,False,WRONG PARKING,12.6797,0.0

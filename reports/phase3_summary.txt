@@ -1,0 +1,236 @@
+Phase 3 Summary
+============================================================
+Generated: 2026-06-18 18:14 IST
+
+TOP 20 ENFORCEMENT PRIORITIES (City-Wide)
+------------------------------------------------------------
+Rank  Hotspot                                    Station               Score Band      
+------------------------------------------------------------
+1     BTP080 - NR Road, SP Road Junction         City Market           70.74 Critical  
+2     BTP011 - RR Kalyana Mantapa, Dr. Rajkuma   Rajajinagar           69.83 Critical  
+3     BTP058 - Subbanna Junction                 Upparpet              66.45 Critical  
+4     BTP057 - Anand Rao Junction                Upparpet              66.03 Critical  
+5     BTP045 - Danvanthri Road Junction          Upparpet              64.50 Critical  
+6     BTP024 - NPS, Vijayanagar                  Magadi Road           62.35 Critical  
+7     BTP044 - Sagar Theatre Junction            Upparpet              61.99 Critical  
+8     BTP186 - 9th Cross, 4th Main, Jayanagar    Wilson Garden         61.32 Critical  
+9     BTP163 - 16th Main Road, BTM Layout        Mico Layout           61.07 Critical  
+10    BTP026 - 1st Block Junction, Rajajinagar   Malleshwaram          60.70 Critical  
+11    BTP040 - Elite Junction                    Upparpet              60.02 Critical  
+12    BTP041 - Gopal Gowda Circle                Cubbon Park           59.90 Critical  
+13    BTP211 - Central Street Junction           Shivajinagar          58.84 Critical  
+14    BTP117 - 9th Cross, Kanakapura Road        J.P. Nagar            58.84 Critical  
+15    BTP038 - Mysore Bank Junction              Upparpet              58.69 Critical  
+16    BTP027 - Modi Bridge Junction              Rajajinagar           58.10 Critical  
+17    BTP054 - Shivananda Circle                 High ground           57.26 Critical  
+18    BTP051 - Safina Plaza Junction             Shivajinagar          56.91 Critical  
+19    BTP108 - Tagore Park Junction              Basavanagudi          56.48 Critical  
+20    BTP083 - AS Char Street, Mysore Road       City Market           56.43 Critical  
+
+Total hotspots ranked: 701
+  Critical  : 106
+  High      : 245
+  Medium    : 210
+  Low       : 140
+
+TOP PATROL ROUTES (by station, highest-priority first)
+------------------------------------------------------------
+
+Route: UPPARPET-R01  |  Station: Upparpet  |  Stops: 10  |  Mean Priority: 54.37
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     BTP058 - Subbanna Junction                    66.45 Critical      0.000
+  2     Unknown Hotspot U-0091                        48.24 Critical      0.312
+  3     BTP053 - Three Let Junction                   46.64 Critical      0.133
+  4     BTP052 - CID Carlton House Junction           31.73 Medium        0.262
+  5     BTP037 - KR Circle                            39.44 High          0.219
+  6     BTP038 - Mysore Bank Junction                 58.69 Critical      0.382
+  7     BTP044 - Sagar Theatre Junction               61.99 Critical      0.253
+  8     BTP040 - Elite Junction                       60.02 Critical      0.309
+  9     BTP045 - Danvanthri Road Junction             64.50 Critical      0.203
+  10    BTP057 - Anand Rao Junction                   66.03 Critical      0.246
+
+Route: UPPARPET-R02  |  Station: Upparpet  |  Stops: 2  |  Mean Priority: 51.92
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     BTP048 - Shanthala Junction                   49.03 Critical      0.000
+  2     BTP043 - Upparpet Junction                    54.81 Critical      0.402
+
+Route: SHIVAJINAGAR-R01  |  Station: Shivajinagar  |  Stops: 10  |  Mean Priority: 47.78
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     BTP211 - Central Street Junction              58.84 Critical      0.000
+  2     Unknown Hotspot U-0032                        51.12 Critical      0.335
+  3     Unknown Hotspot U-0346                        39.53 High          0.437
+  4     Unknown Hotspot U-0107                        52.46 Critical      0.326
+  5     BTP171 - Indian Express (Balekundri)          43.14 High          0.369
+  6     BTP173 - TMC                                  40.25 High          0.441
+  7     BTP042 - Minsk Square Junction (CTO)          51.28 Critical      0.122
+  8     BTP051 - Safina Plaza Junction                56.91 Critical      1.103
+  9     Unknown Hotspot U-0022                        54.77 Critical      0.325
+  10    Unknown Hotspot U-0228                        29.53 Medium        1.210
+
+Route: MALLESHWARAM-R02  |  Station: Malleshwaram  |  Stops: 5  |  Mean Priority: 47.00
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     Unknown Hotspot U-0215                        36.59 High          0.000
+  2     BTP001 - 10th Cross, Dr. Rajkumar Road        49.76 Critical      0.253
+  3     Unknown Hotspot U-0029                        49.27 Critical      0.420
+  4     Unknown Hotspot U-0136                        49.19 Critical      0.446
+  5     BTP023 - Mahalaxmi Layout Entrance            50.20 Critical      0.823
+
+Route: CHIKKAJALA-R01  |  Station: Chikkajala  |  Stops: 6  |  Mean Priority: 45.69
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     Unknown Hotspot U-0021                        56.34 Critical      0.000
+  2     Unknown Hotspot U-0123                        35.29 High          0.831
+  3     Unknown Hotspot U-0066                        53.64 Critical      4.554
+  4     Unknown Hotspot U-0334                        33.71 High          3.956
+  5     Unknown Hotspot U-0252                        43.15 High          2.123
+  6     Unknown Hotspot U-0138                        51.99 Critical      2.897
+
+Route: HEBBALA-R01  |  Station: Hebbala  |  Stops: 3  |  Mean Priority: 45.63
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     Unknown Hotspot U-0037                        54.07 Critical      0.000
+  2     Unknown Hotspot U-0272                        48.06 Critical      0.839
+  3     Unknown Hotspot U-0305                        34.75 High          1.472
+
+Route: HALOLDAIRPOR-R01  |  Station: HAL Old Airport  |  Stops: 10  |  Mean Priority: 42.73
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     Unknown Hotspot U-0014                        52.77 Critical      0.000
+  2     Unknown Hotspot U-0370                        28.38 Medium        0.657
+  3     Unknown Hotspot U-0008                        49.54 Critical      0.790
+  4     Unknown Hotspot U-0288                        32.85 High          1.851
+  5     Unknown Hotspot U-0025                        50.39 Critical      1.543
+  6     Unknown Hotspot U-0255                        46.24 Critical      0.774
+  7     Unknown Hotspot U-0262                        33.67 High          0.284
+  8     Unknown Hotspot U-0087                        46.54 Critical      1.011
+  9     Unknown Hotspot U-0131                        51.43 Critical      1.155
+  10    Unknown Hotspot U-0273                        35.49 High          1.203
+
+Route: CITYMARKET-R01  |  Station: City Market  |  Stops: 10  |  Mean Priority: 41.82
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     BTP080 - NR Road, SP Road Junction            70.74 Critical      0.000
+  2     BTP168 - MSR Building, JC Road                27.51 Medium        0.449
+  3     BTP167 - JC Road Junction                     46.56 Critical      0.315
+  4     BTP119 - Minerva Circle                       35.01 High          0.331
+  5     BTP120 - Lalbagh Main Gate Junction           40.27 High          0.402
+  6     BTP192 - Urvashi Theater                      31.77 High          0.272
+  7     BTP180 - Swagath Poornima Theatre             13.27 Low           0.294
+  8     BTP118 - Basappa Circle                       45.98 Critical      0.963
+  9     BTP104 - Medical College Circle               53.88 Critical      0.173
+  10    BTP082 - KR Market Junction                   53.21 Critical      0.543
+
+Route: BYATARAYANAP-R01  |  Station: Byatarayanapura  |  Stops: 10  |  Mean Priority: 41.61
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     Unknown Hotspot U-0296                        50.57 Critical      0.000
+  2     Unknown Hotspot U-0396                        36.35 High          0.310
+  3     Unknown Hotspot U-0002                        45.54 Critical      0.579
+  4     Unknown Hotspot U-0114                        32.21 High          1.053
+  5     BTP017 - Attiguppe Circle                     32.05 High          0.167
+  6     Unknown Hotspot U-0253                        43.68 High          1.509
+  7     BTP098 - Nayandahalli Junction                44.90 Critical      0.831
+  8     Unknown Hotspot U-0178                        41.77 High          0.617
+  9     Unknown Hotspot U-0156                        38.72 High          0.846
+  10    BTP096 - Gali Anjaneya Temple                 50.30 Critical      3.124
+
+Route: KODIGEHALLI-R01  |  Station: Kodigehalli  |  Stops: 10  |  Mean Priority: 40.63
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     Unknown Hotspot U-0048                        49.66 Critical      0.000
+  2     Unknown Hotspot U-0380                        32.05 High          0.589
+  3     Unknown Hotspot U-0147                        37.25 High          0.830
+  4     Unknown Hotspot U-0297                        32.85 High          0.944
+  5     Unknown Hotspot U-0050                        44.70 High          0.952
+  6     Unknown Hotspot U-0057                        49.61 Critical      0.913
+  7     Unknown Hotspot U-0111                        43.23 High          0.593
+  8     Unknown Hotspot U-0036                        34.64 High          0.500
+  9     Unknown Hotspot U-0122                        49.14 Critical      0.433
+  10    Unknown Hotspot U-0190                        33.13 High          2.485
+
+Route: RAJAJINAGAR-R01  |  Station: Rajajinagar  |  Stops: 10  |  Mean Priority: 40.31
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     BTP011 - RR Kalyana Mantapa, Dr. Rajkuma      69.83 Critical      0.000
+  2     BTP204 - ESI Hospital, Rajajinagar            45.60 Critical      0.364
+  3     BTP170 - Dr. Bheem Rao Palace, Chord Roa      49.00 Critical      0.229
+  4     BTP018 - Dhobi Ghat Junction                  35.39 High          0.376
+  5     BTP024 - NPS, Vijayanagar                     19.48 Low           0.231
+  6     BTP061 - Bhashyam Circle                      40.57 High          0.480
+  7     BTP210 - 50th cross, 12th Main , Rajajin      39.25 High          0.236
+  8     BTP015 - Suguna Hospital, Dr. Rajkumar R      37.45 High          0.481
+  9     BTP010 - Rajajinagar Entrance                 35.58 High          0.366
+  10    BTP006 - Navarang Bar Junction                30.99 Medium        0.771
+
+Route: VIJAYANAGARA-R02  |  Station: Vijayanagara  |  Stops: 10  |  Mean Priority: 39.69
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     Unknown Hotspot U-0141                        33.57 High          0.000
+  2     BTP017 - Attiguppe Circle                     25.42 Medium        1.528
+  3     BTP214 - 5th Main Chamrajpet Junction         42.28 High          1.738
+  4     BTP208 - Havanur Circle                       39.11 High          1.563
+  5     BTP207 - 8th Main Road Basaveshwara Naga      37.76 High          0.374
+  6     BTP206 - Shankara Mutt Circle, Vijayanag      39.05 High          0.810
+  7     BTP205 - Modi Hospital Junction               43.75 High          0.611
+  8     BTP027 - Modi Bridge Junction                 45.31 Critical      0.264
+  9     BTP170 - Dr. Bheem Rao Palace, Chord Roa      46.08 Critical      0.838
+  10    BTP018 - Dhobi Ghat Junction                  44.54 High          0.281
+
+Route: ELECTRONICCI-R01  |  Station: Electronic City  |  Stops: 10  |  Mean Priority: 38.62
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     Unknown Hotspot U-0015                        48.81 Critical      0.000
+  2     Unknown Hotspot U-0393                        31.14 Medium        1.597
+  3     Unknown Hotspot U-0389                        25.27 Medium        0.631
+  4     Unknown Hotspot U-0359                        42.72 High          0.289
+  5     Unknown Hotspot U-0104                        46.15 Critical      1.978
+  6     Unknown Hotspot U-0023                        30.72 Medium        1.836
+  7     Unknown Hotspot U-0191                        47.23 Critical      3.966
+  8     Unknown Hotspot U-0242                        33.29 High          0.594
+  9     Unknown Hotspot U-0285                        36.01 High          1.552
+  10    Unknown Hotspot U-0082                        44.82 Critical      0.587
+
+Route: JEEVANBHEEMA-R01  |  Station: Jeevanbheemanagar  |  Stops: 10  |  Mean Priority: 38.31
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     BTP148 - 17th Main, Doopanahalli Bus Sto      48.23 Critical      0.000
+  2     BTP146 - Domlur Water Tank                    17.92 Low           0.448
+  3     Unknown Hotspot U-0038                        46.40 Critical      0.620
+  4     Unknown Hotspot U-0133                        37.35 High          0.909
+  5     Unknown Hotspot U-0188                        29.07 Medium        0.439
+  6     Unknown Hotspot U-0184                        39.95 High          0.902
+  7     Unknown Hotspot U-0127                        44.50 High          0.549
+  8     Unknown Hotspot U-0012                        45.75 Critical      1.550
+  9     Unknown Hotspot U-0034                        38.54 High          1.010
+  10    Unknown Hotspot U-0243                        35.38 High          0.339
+
+Route: RAJAJINAGAR-R02  |  Station: Rajajinagar  |  Stops: 10  |  Mean Priority: 38.14
+  Stop  Hotspot                                    Priority Band        Dist km
+  1     BTP009 - Prakash Nagar Junction               53.42 Critical      0.000
+  2     BTP008 - Navarang Theatre                     36.44 High          0.778
+  3     BTP182 - 19th Main Junction, Rajajinagar      37.23 High          0.259
+  4     BTP027 - Modi Bridge Junction                 58.10 Critical      0.387
+  5     BTP205 - Modi Hospital Junction               30.54 Medium        0.263
+  6     BTP026 - 1st Block Junction, Rajajinagar      22.20 Low           0.480
+  7     BTP023 - Mahalaxmi Layout Entrance            40.24 High          0.714
+  8     Unknown Hotspot U-0108                        39.98 High          0.594
+  9     Unknown Hotspot U-0280                        33.03 High          0.796
+  10    Unknown Hotspot U-0314                        30.26 Medium        0.309
+
+ROI SIMULATION RESULTS
+------------------------------------------------------------
+Scenario   Officers  Target%  Intensity  Hotspots    DPCIS   DOffenders
+------------------------------------------------------------
+S01               2    10.0%        0.5        10     -1.4           -5
+S02               5    20.0%        0.7        25    -3.88          -23
+S03              10    30.0%        0.8        50    -6.76          -69
+S04              15    40.0%        1.0        75   -11.36         -138
+S05              20    50.0%        1.0       100   -14.08         -230
+S06               3    15.0%        0.6        15    -2.53          -10
+S07               7    25.0%        0.8        35    -5.67          -40
+S08              10    20.0%        0.5        50    -2.82          -46
+
+Model assumptions (all scenarios):
+  A1:baseline=4v/hotspot/mo
+  B1:20v/officer/mo
+  C1:0.5%/visit@intensity=1
+  C2:cap=70%
+  C3:RO_capture=8%/hotspot/visit
+  D1:PCIS_factor=0.4
+
+OUTPUTS GENERATED
+------------------------------------------------------------
+  Enforcement priorities   : C:\Users\Intern\Documents\prototype\prototype\data\processed\enforcement_priorities.csv
+  Patrol routes            : C:\Users\Intern\Documents\prototype\prototype\data\processed\patrol_routes.csv
+  ROI simulation           : C:\Users\Intern\Documents\prototype\prototype\data\processed\roi_simulation.csv
+  Phase 3 summary          : C:\Users\Intern\Documents\prototype\prototype\reports\phase3_summary.txt
